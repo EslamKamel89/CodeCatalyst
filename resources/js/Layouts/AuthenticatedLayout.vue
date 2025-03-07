@@ -42,7 +42,10 @@ const showingNavigationDropdown = ref(false);
 
                         <div class="hidden sm:ms-6 sm:flex sm:items-center">
                             <!-- Settings Dropdown -->
-                            <div class="relative ms-3">
+                            <div
+                                class="relative ms-3"
+                                v-if="$page.props.auth.user"
+                            >
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
@@ -83,6 +86,14 @@ const showingNavigationDropdown = ref(false);
                                         </DropdownLink>
                                     </template>
                                 </Dropdown>
+                            </div>
+                            <div v-else class="flex flex-row gap-2">
+                                <NavLink :href="route('login')">
+                                    Login
+                                </NavLink>
+                                <NavLink :href="route('register')">
+                                    Register
+                                </NavLink>
                             </div>
                         </div>
 
@@ -148,27 +159,43 @@ const showingNavigationDropdown = ref(false);
 
                     <!-- Responsive Settings Options -->
                     <div class="border-t border-gray-200 pb-1 pt-4">
-                        <div class="px-4">
-                            <div class="text-base font-medium text-gray-800">
-                                {{ $page.props.auth.user.name }}
+                        <template v-if="$page.props.auth.user">
+                            <div class="px-4">
+                                <div
+                                    class="text-base font-medium text-gray-800"
+                                >
+                                    {{ $page.props.auth.user.name }}
+                                </div>
+                                <div class="text-sm font-medium text-gray-500">
+                                    {{ $page.props.auth.user.email }}
+                                </div>
                             </div>
-                            <div class="text-sm font-medium text-gray-500">
-                                {{ $page.props.auth.user.email }}
-                            </div>
-                        </div>
 
-                        <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')">
-                                Profile
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                :href="route('logout')"
-                                method="post"
-                                as="button"
-                            >
-                                Log Out
-                            </ResponsiveNavLink>
-                        </div>
+                            <div class="mt-3 space-y-1">
+                                <ResponsiveNavLink
+                                    :href="route('profile.edit')"
+                                >
+                                    Profile
+                                </ResponsiveNavLink>
+                                <ResponsiveNavLink
+                                    :href="route('logout')"
+                                    method="post"
+                                    as="button"
+                                >
+                                    Log Out
+                                </ResponsiveNavLink>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div class="mt-3 space-y-1">
+                                <ResponsiveNavLink :href="route('login')">
+                                    Login
+                                </ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('register')">
+                                    Register
+                                </ResponsiveNavLink>
+                            </div>
+                        </template>
                     </div>
                 </div>
             </nav>

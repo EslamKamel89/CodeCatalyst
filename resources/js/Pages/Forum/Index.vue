@@ -1,9 +1,7 @@
 <template>
     <Head title="Home" />
 
-    <component
-        :is="pr(page.props.auth.user) ? AuthenticatedLayout : GuestLayout"
-    >
+    <AuthenticatedLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 Home
@@ -17,13 +15,11 @@
                 </div>
             </div>
         </div>
-    </component>
+    </AuthenticatedLayout>
 </template>
 
 <script setup lang="ts">
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import { pr } from '@/Utils/pr';
 import { Head, usePage } from '@inertiajs/vue3';
 
 const page = usePage();
