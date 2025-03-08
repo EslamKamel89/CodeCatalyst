@@ -15,6 +15,18 @@ namespace App\Models{
 /**
  * 
  *
+ * @method static \Database\Factories\TopicFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic query()
+ */
+	class Topic extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
  * @property int $id
  * @property string $name
  * @property string $email
@@ -37,6 +49,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
+ * @property string $username
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUsername($value)
  * @mixin \Eloquent
  */
 	class User extends \Eloquent {}
