@@ -13,6 +13,7 @@ defineProps<{
 const user = usePage().props.auth.user;
 
 const form = useForm({
+    username: user.username,
     name: user.name,
     email: user.email,
 });
@@ -48,6 +49,20 @@ const form = useForm({
                 />
 
                 <InputError class="mt-2" :message="form.errors.name" />
+            </div>
+
+            <div>
+                <InputLabel for="username" value="Username" />
+
+                <TextInput
+                    id="username"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.username"
+                    required
+                />
+
+                <InputError class="mt-2" :message="form.errors.username" />
             </div>
 
             <div>
