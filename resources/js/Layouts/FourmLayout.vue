@@ -1,0 +1,14 @@
+<template>
+    <AuthenticatedLayout>
+        <div
+            class="mx-auto max-w-7xl gap-2 space-y-6 px-6 py-12 md:grid md:grid-cols-7 md:space-y-0 md:px-8"
+        >
+            <div class="col-span-2"><slot name="side" /></div>
+            <div class="col-span-5"><slot /></div>
+        </div>
+    </AuthenticatedLayout>
+</template>
+
+<script setup lang="ts">
+import AuthenticatedLayout from './AuthenticatedLayout.vue';
+</script>
