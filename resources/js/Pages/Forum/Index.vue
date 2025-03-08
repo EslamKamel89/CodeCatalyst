@@ -10,16 +10,19 @@
 
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
-                <select id="topics">
-                    <option>All Topics</option>
-                    <option
-                        v-for="topic in $page.props.topics"
-                        :key="topic.id"
-                        value="topic.slug"
-                    >
-                        {{ topic.name }}
-                    </option>
-                </select>
+                <div>
+                    <InputLabel class="sr-only" value="Topics" for="topics" />
+                    <Select id="topics">
+                        <option>All Topics</option>
+                        <option
+                            v-for="topic in $page.props.topics"
+                            :key="topic.id"
+                            value="topic.slug"
+                        >
+                            {{ topic.name }}
+                        </option>
+                    </Select>
+                </div>
             </div>
         </div>
         <template #side>
@@ -31,6 +34,8 @@
 </template>
 
 <script setup lang="ts">
+import InputLabel from '@/Components/InputLabel.vue';
+import Select from '@/Components/Select.vue';
 import FourmLayout from '@/Layouts/FourmLayout.vue';
 import { Head, usePage } from '@inertiajs/vue3';
 
