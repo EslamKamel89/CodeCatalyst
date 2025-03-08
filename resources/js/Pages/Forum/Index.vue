@@ -9,7 +9,18 @@
         </template>
 
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-            <div class="p-6 text-gray-900">Default Slot</div>
+            <div class="p-6 text-gray-900">
+                <select id="topics">
+                    <option>All Topics</option>
+                    <option
+                        v-for="topic in $page.props.topics"
+                        :key="topic.id"
+                        value="topic.slug"
+                    >
+                        {{ topic.name }}
+                    </option>
+                </select>
+            </div>
         </div>
         <template #side>
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">

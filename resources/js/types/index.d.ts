@@ -1,3 +1,5 @@
+import { Topic } from './types';
+
 export interface User {
     id: number;
     username: string;
@@ -9,6 +11,7 @@ export interface User {
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {
+    topics: Topic[];
     auth: {
         user: User;
     };
