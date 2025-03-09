@@ -15,7 +15,7 @@
                     <Select id="topics">
                         <option>All Topics</option>
                         <option
-                            v-for="topic in $page.props.topics"
+                            v-for="topic in page.props.topics"
                             :key="topic.id"
                             value="topic.slug"
                         >
@@ -25,6 +25,7 @@
                 </div>
             </div>
         </div>
+        <Discussion />
         <template #side>
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">Side Slot</div>
@@ -34,6 +35,7 @@
 </template>
 
 <script setup lang="ts">
+import Discussion from '@/Components/Forum/Discussion.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import Select from '@/Components/Select.vue';
 import FourmLayout from '@/Layouts/FourmLayout.vue';
