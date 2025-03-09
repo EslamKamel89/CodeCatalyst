@@ -56,6 +56,6 @@ class Discussion extends Model {
 	}
 
 	public function isPinned(): bool {
-		return $this->isPinned != null;
+		return $this->is_pinned != null;
 	}
 }
