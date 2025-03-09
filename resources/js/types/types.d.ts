@@ -6,12 +6,41 @@ export interface Topic {
     updated_at: string;
 }
 
-export function isTopic(value: unknown): value is Topic {
-    if (!isPlainObject(value)) return false;
-    if (!value.hasOwn('id')) return false;
-    if (!value.hasOwn('name')) return false;
-    if (!value.hasOwn('slug')) return false;
-    if (!value.hasOwn('created_at')) return false;
-    if (!value.hasOwn('updated_at')) return false;
-    return true;
+export interface Pagination<T> {
+    data: T[];
+    links: Links;
+    meta: Meta;
+}
+
+export interface Discussion {
+    id: number;
+    user_id: number;
+    topic_id: number;
+    title: string;
+    slug: string;
+    topic: Topic;
+}
+
+export interface Links {
+    first: string;
+    last: string;
+    prev: string;
+    next: string;
+}
+
+export interface Meta {
+    current_page: number;
+    from: number;
+    last_page: number;
+    links: Link[];
+    path: string;
+    per_page: number;
+    to: number;
+    total: number;
+}
+
+export interface Link {
+    url?: string;
+    label: string;
+    active: boolean;
 }

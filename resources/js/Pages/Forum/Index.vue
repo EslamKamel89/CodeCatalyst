@@ -25,7 +25,13 @@
                 </div>
             </div>
         </div>
-        <Discussion />
+        <div class="space-y-2">
+            <Discussion
+                v-for="discussion in discussions.data"
+                :key="discussion.id"
+                :discussion="discussion"
+            />
+        </div>
         <template #side>
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">Side Slot</div>
@@ -39,7 +45,11 @@ import Discussion from '@/Components/Forum/Discussion.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import Select from '@/Components/Select.vue';
 import FourmLayout from '@/Layouts/FourmLayout.vue';
+import { Discussion as DiscussionType, Pagination } from '@/types/types';
 import { Head, usePage } from '@inertiajs/vue3';
 
 const page = usePage();
+defineProps<{
+    discussions: Pagination<DiscussionType>;
+}>();
 </script>
