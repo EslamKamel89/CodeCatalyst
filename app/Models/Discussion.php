@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int|null $user_id
@@ -56,6 +56,6 @@ class Discussion extends Model {
 	}
 
 	public function isPinned(): bool {
-		return $this->is_pinned != null;
+		return $this->pinned_at != null;
 	}
 }

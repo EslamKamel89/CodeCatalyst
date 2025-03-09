@@ -68,12 +68,14 @@ class DatabaseSeeder extends Seeder {
 				'created_at' => now()->subYear()->addDays( $index ),
 				'updated_at' => now()->subYear()->addDays( $index ),
 			] );
-			collect( $this->discussionTitles[ $topic ] )->each( function ($title) use ($topicModel) {
+			collect( $this->discussionTitles[ $topic ] )->each( function ($title, $index) use ($topicModel) {
 				Discussion::create( [ 
 					'user_id' => User::inRandomOrder()->first()->id,
 					'topic_id' => $topicModel->id,
 					'title' => $title,
 					'slug' => fake()->slug(),
+					'created_at' => now()->subYear()->addDays( $index ),
+					'updated_at' => now()->subYear()->addDays( $index ),
 				] );
 			} );
 		} );

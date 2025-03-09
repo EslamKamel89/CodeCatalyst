@@ -10,7 +10,9 @@ class ForumIndexController extends Controller {
 	public function __invoke() {
 		return inertia( 'Forum/Index', [ 
 			'discussions' => DiscussionResource::collection(
-				Discussion::with( [ 'topic' ] )->paginate( 10 ),
+				Discussion::with( [ 'topic' ] )
+					->latest()
+					->paginate( 10 ),
 			),
 		] );
 	}

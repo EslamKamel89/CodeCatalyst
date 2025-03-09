@@ -8,7 +8,12 @@
                     >
                         {{ discussion.topic.name }}
                     </div>
-                    <h2 class="text-lg font-medium">{{ discussion.title }}</h2>
+                    <h2 class="text-lg font-medium">
+                        <template v-if="discussion.is_pinned"
+                            >[Pinned]</template
+                        >
+                        {{ discussion.title }}
+                    </h2>
                 </div>
             </div>
             <div>Avatars</div>
