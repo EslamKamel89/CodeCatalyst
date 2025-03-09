@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion whereTopicId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion whereUserId($value)
+ * @property string|null $pinned_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion wherePinnedAt($value)
  * @mixin \Eloquent
  */
 class Discussion extends Model {
@@ -39,11 +41,21 @@ class Discussion extends Model {
 		'topic_id',
 		'title',
 		'slug',
+		'pinned_at'
 	];
+	protected function casts(): array {
+		return [ 
+			'is_pinned' => 'datetime',
+		];
+	}
 	public function topic(): BelongsTo {
 		return $this->belongsTo( Topic::class);
 	}
 	public function users(): BelongsTo {
 		return $this->belongsTo( User::class);
+	}
+
+	public function isPinned(): bool {
+		return $this->isPinned != null;
 	}
 }

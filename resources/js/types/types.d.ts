@@ -18,6 +18,7 @@ export interface Discussion {
     topic_id: number;
     title: string;
     slug: string;
+    pinned_at: string;
     topic: Topic;
 }
 

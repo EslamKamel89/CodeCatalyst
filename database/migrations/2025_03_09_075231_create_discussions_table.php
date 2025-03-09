@@ -15,6 +15,7 @@ return new class extends Migration {
 			$table->foreignId( 'topic_id' )->constrained();
 			$table->string( 'title' );
 			$table->string( 'slug' )->unique()->nullable();
+			$table->timestamp( 'pinned_at' )->nullable();
 			$table->timestamps();
 		} );
 	}
