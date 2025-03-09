@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * 
@@ -22,6 +24,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Discussion> $discussions
+ * @property-read int|null $discussions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+ * @property-read int|null $users_count
  * @mixin \Eloquent
  */
 class Topic extends Model {
@@ -31,4 +37,15 @@ class Topic extends Model {
 		'name',
 		'slug',
 	];
+	public function discussions(): HasMany {
+		return $this->hasMany( Discussion::class);
+	}
+	public function users(): BelongsToMany {
+		return $this->belongsToMany(
+			User::class,
+			'discussions',
+			'topic_id',
+			'user_id',
+		);
+	}
 }

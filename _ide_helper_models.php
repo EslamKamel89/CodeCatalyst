@@ -15,10 +15,39 @@ namespace App\Models{
 /**
  * 
  *
+ * @property-read \App\Models\Topic|null $topic
+ * @property-read \App\Models\User|null $users
+ * @method static \Database\Factories\DiscussionFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion query()
+ */
+	class Discussion extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Database\Factories\TopicFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Topic whereUpdatedAt($value)
+ * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Discussion> $discussions
+ * @property-read int|null $discussions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+ * @property-read int|null $users_count
  */
 	class Topic extends \Eloquent {}
 }
@@ -52,6 +81,10 @@ namespace App\Models{
  * @property string $username
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUsername($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Discussion> $discussions
+ * @property-read int|null $discussions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Topic> $topics
+ * @property-read int|null $topics_count
  */
 	class User extends \Eloquent {}
 }
