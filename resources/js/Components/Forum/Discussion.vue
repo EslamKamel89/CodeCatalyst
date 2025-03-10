@@ -10,7 +10,9 @@
                     </div>
                     <h2 class="text-lg font-medium">
                         <template v-if="discussion.is_pinned"
-                            >[Pinned]</template
+                            ><span class="me-1 font-bold text-gray-500"
+                                >[Pinned]</span
+                            ></template
                         >
                         {{ discussion.title }}
                     </h2>

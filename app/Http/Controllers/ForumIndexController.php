@@ -12,6 +12,7 @@ class ForumIndexController extends Controller {
 			'discussions' => DiscussionResource::collection(
 				Discussion::with( [ 'topic' ] )
 					->orderByPinned()
+					// todo: will be removed by ordering by latest posts later
 					->latest()
 					->paginate( 10 ),
 			),
