@@ -39,8 +39,27 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion wherePinnedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion orderByPinned()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
+ * @property-read int|null $posts_count
  */
 	class Discussion extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Post> $children
+ * @property-read int|null $children_count
+ * @property-read \App\Models\Discussion|null $discussion
+ * @property-read Post|null $parent
+ * @property-read \App\Models\User|null $user
+ * @method static \Database\Factories\PostFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post query()
+ */
+	class Post extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -103,6 +122,8 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Topic> $topics
  * @property-read int|null $topics_count
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
+ * @property-read int|null $posts_count
  */
 	class User extends \Eloquent {}
 }

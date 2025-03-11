@@ -6,6 +6,7 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * 
@@ -33,6 +34,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $pinned_at
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion wherePinnedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion orderByPinned()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
+ * @property-read int|null $posts_count
  * @mixin \Eloquent
  */
 class Discussion extends Model {
@@ -63,5 +66,8 @@ class Discussion extends Model {
 
 	public function scopeOrderByPinned( Builder $query ) {
 		$query->orderBy( 'pinned_at', 'desc' );
+	}
+	public function posts(): HasMany {
+		return $this->hasMany( Post::class);
 	}
 }
