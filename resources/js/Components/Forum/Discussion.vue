@@ -21,7 +21,7 @@
                     </h2>
                 </div>
             </div>
-            <div>Avatars</div>
+            <div v-if="!hideAvatar">Avatars</div>
         </div>
     </Link>
 </template>
@@ -32,5 +32,6 @@ import { Link } from '@inertiajs/vue3';
 
 defineProps<{
     discussion: Discussion;
+    hideAvatar?: boolean | null;
 }>();
 </script>

@@ -1,5 +1,8 @@
 <template>
     <AuthenticatedLayout>
+        <template #header v-if="$slots.header">
+            <slot name="header"
+        /></template>
         <div
             class="mx-auto max-w-7xl gap-2 space-y-6 px-6 py-12 md:grid md:grid-cols-7 md:space-y-0 md:px-8"
         >
