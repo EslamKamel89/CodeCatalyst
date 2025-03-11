@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get( '/', ForumIndexController::class)->name( 'home' );
-Route::get( '/{discussion}', DiscussionShowController::class)->name( 'discussions.show' );
+Route::get( '/{discussion:slug}', DiscussionShowController::class)->name( 'discussions.show' );
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [

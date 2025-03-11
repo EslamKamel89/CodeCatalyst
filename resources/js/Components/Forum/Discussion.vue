@@ -1,5 +1,8 @@
 <template>
-    <div class="mt-4 overflow-hidden bg-white shadow-sm sm:rounded-lg">
+    <Link
+        :href="route('discussions.show', { discussion: discussion.slug })"
+        class="mt-4 overflow-hidden bg-white shadow-sm sm:rounded-lg"
+    >
         <div class="flex items-center space-x-6 p-6 text-gray-900">
             <div class="flex-grow">
                 <div class="flex items-center space-x-3">
@@ -20,11 +23,12 @@
             </div>
             <div>Avatars</div>
         </div>
-    </div>
+    </Link>
 </template>
 
 <script setup lang="ts">
 import { Discussion } from '@/types/types';
+import { Link } from '@inertiajs/vue3';
 
 defineProps<{
     discussion: Discussion;
