@@ -1,3 +1,4 @@
+import { User } from '@/types/index';
 export interface Topic {
     id: number;
     name: string;
@@ -45,4 +46,16 @@ export interface Link {
     url?: string;
     label: string;
     active: boolean;
+}
+
+export interface Post {
+    id: number;
+    user_id: number;
+    discussion_id: number;
+    parent_id: number;
+    body: string;
+    created_at: string;
+    updated_at: string;
+    user: User;
+    discussion: Discussion;
 }
