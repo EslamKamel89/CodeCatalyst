@@ -54,8 +54,13 @@ export interface Post {
     discussion_id: number;
     parent_id: number;
     body: string;
-    created_at: string;
-    updated_at: string;
+    created_at: DateTime;
+    updated_at: DateTime;
     user: User;
     discussion: Discussion;
+}
+
+export interface DateTime {
+    human: string;
+    datetime: string;
 }

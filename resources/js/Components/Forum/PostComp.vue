@@ -1,6 +1,6 @@
 <template>
     <div
-        class="mt-4 flex items-center space-x-3 overflow-hidden bg-white p-6 text-gray-900 shadow-sm sm:rounded-lg"
+        class="mt-4 flex items-start space-x-3 overflow-hidden bg-white p-6 text-gray-900 shadow-sm sm:rounded-lg"
     >
         <div class="w-10 flex-shrink-0">
             <img
@@ -12,7 +12,12 @@
         <div class="w-full">
             <div class="">
                 <div class="">{{ post.user.username }}</div>
-                <div class="">{{ post.created_at }}</div>
+                <div class="text-sm text-gray-500">
+                    {{ post.created_at.human }}
+                </div>
+            </div>
+            <div class="mt-3">
+                {{ post.body }}
             </div>
         </div>
     </div>
