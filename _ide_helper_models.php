@@ -40,8 +40,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion orderByPinned()
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
  * @property-read int|null $posts_count
- * @mixin \Eloquent
  * @property-read \App\Models\Post|null $post
+ * @mixin \Eloquent
  */
 	class Discussion extends \Eloquent {}
 }

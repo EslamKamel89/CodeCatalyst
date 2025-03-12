@@ -19,6 +19,8 @@ class PostResource extends JsonResource {
 			'body' => $this->body,
 			'user' => PublicUserResource::make( $this->whenLoaded( 'user' ) ),
 			'discussion' => DiscussionResource::make( $this->whenLoaded( 'discussion' ) ),
+			'created_at' => $this->created_at->diffForHumans(),
+			'updated_at' => $this->updated_at->diffForHumans(),
 		];
 	}
 }

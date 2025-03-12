@@ -1,8 +1,20 @@
 <template>
     <div
-        class="mt-4 flex items-center overflow-hidden bg-white p-6 text-gray-900 shadow-sm sm:rounded-lg"
+        class="mt-4 flex items-center space-x-3 overflow-hidden bg-white p-6 text-gray-900 shadow-sm sm:rounded-lg"
     >
-        {{ post.body }}
+        <div class="w-10 flex-shrink-0">
+            <img
+                :src="post.user.avatar_url"
+                alt="User Avatar"
+                class="h-10 w-10 rounded-full"
+            />
+        </div>
+        <div class="w-full">
+            <div class="">
+                <div class="">{{ post.user.username }}</div>
+                <div class="">{{ post.created_at }}</div>
+            </div>
+        </div>
     </div>
 </template>
 

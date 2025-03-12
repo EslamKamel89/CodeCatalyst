@@ -16,7 +16,7 @@ class PublicUserResource extends JsonResource {
 			'name' => $this->name,
 			'email' => $this->email,
 			'username' => $this->username,
-			'avatar_url' => 'todo',
+			'avatar_url' => $this->avatarUrl(),
 		];
 	}
 }
