@@ -17,6 +17,7 @@ class PostResource extends JsonResource {
 			'discussion_id' => $this->discussion_id,
 			'parent_id' => $this->parent_id,
 			'body' => $this->body,
+			'body_preview' => str( $this->body )->limit( 200 ),
 			'user' => PublicUserResource::make( $this->whenLoaded( 'user' ) ),
 			'discussion' => DiscussionResource::make( $this->whenLoaded( 'discussion' ) ),
 			'created_at' => DateTimeResource::make( $this->created_at ),

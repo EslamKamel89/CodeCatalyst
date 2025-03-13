@@ -23,6 +23,12 @@
                 </div>
                 <div v-if="!hideAvatar">Avatars</div>
             </div>
+            <template v-if="!hideAvatar">
+                <div class="line-clamp-1 px-5 text-sm font-thin text-gray-500">
+                    {{ discussion.post?.body_preview }}
+                </div>
+                <div>Last Post by X at Y</div>
+            </template>
         </Link>
     </div>
 </template>

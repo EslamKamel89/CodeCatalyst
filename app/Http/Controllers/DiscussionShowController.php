@@ -19,7 +19,7 @@ class DiscussionShowController extends Controller {
 					->with( [ 'user', 'discussion' ] )
 					// ->where( 'id', 88888888888888 )
 					->oldest()
-					->paginate( 1 )
+					->paginate( 10 )
 			)
 		] );
 	}

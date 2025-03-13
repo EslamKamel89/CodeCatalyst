@@ -22,6 +22,7 @@ export interface Discussion {
     pinned_at: string;
     is_pinned: boolean;
     topic: Topic;
+    post?: Post;
 }
 
 export interface Links {
@@ -54,6 +55,7 @@ export interface Post {
     discussion_id: number;
     parent_id: number;
     body: string;
+    body_preview?: string;
     created_at: DateTime;
     updated_at: DateTime;
     user: User;
