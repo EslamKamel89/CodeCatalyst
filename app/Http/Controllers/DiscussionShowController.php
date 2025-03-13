@@ -17,6 +17,7 @@ class DiscussionShowController extends Controller {
 			'posts' => PostResource::collection(
 				Post::whereBelongsTo( $discussion )
 					->with( [ 'user', 'discussion' ] )
+					// ->where( 'id', 88888888888888 )
 					->oldest()
 					->paginate( 1 )
 			)

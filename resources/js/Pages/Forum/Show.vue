@@ -13,10 +13,21 @@
                 <Discussion :discussion="discussion" :hide-avatar="true" />
             </div>
         </div>
-        <div>
-            <PostComp v-for="post in posts.data" :key="post.id" :post="post" />
-            <PaginationComp :pagination="posts.meta" />
-        </div>
+        <template v-if="posts.data.length">
+            <div>
+                <PostComp
+                    v-for="post in posts.data"
+                    :key="post.id"
+                    :post="post"
+                />
+                <PaginationComp :pagination="posts.meta" />
+            </div>
+        </template>
+        <template v-else>
+            <div class="mt-5 w-full text-center text-lg text-gray-500">
+                Thre are no posts yet
+            </div>
+        </template>
         <template #side>
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">Side Slot</div>
