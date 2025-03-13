@@ -23,6 +23,7 @@ export interface Discussion {
     is_pinned: boolean;
     topic: Topic;
     post?: Post;
+    latest_post?: Post;
 }
 
 export interface Links {

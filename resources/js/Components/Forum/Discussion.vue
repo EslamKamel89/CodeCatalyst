@@ -24,10 +24,38 @@
                 <div v-if="!hideAvatar">Avatars</div>
             </div>
             <template v-if="!hideAvatar">
-                <div class="line-clamp-1 px-5 text-sm font-thin text-gray-500">
-                    {{ discussion.post?.body_preview }}
+                <div class="mb-3 px-5 text-sm font-thin text-gray-500">
+                    <div class="line-clamp-1">
+                        {{ discussion.post?.body_preview }}
+                    </div>
+                    <div class="mx-2 mt-1 flex justify-end text-xs">
+                        <Link
+                            :href="
+                                route('discussions.show', {
+                                    discussion: discussion.slug,
+                                })
+                            "
+                            class="link link-hover"
+                            >Last Post by
+                            {{
+                                discussion.latest_post?.user?.username ??
+                                'Unknown'
+                            }}
+                            <time
+                                :title="
+                                    discussion.latest_post?.created_at.datetime
+                                "
+                                :datetime="
+                                    discussion.latest_post?.created_at.datetime
+                                "
+                            >
+                                {{
+                                    discussion.latest_post?.created_at.human
+                                }}</time
+                            ></Link
+                        >
+                    </div>
                 </div>
-                <div>Last Post by X at Y</div>
             </template>
         </Link>
     </div>

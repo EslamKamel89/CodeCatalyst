@@ -10,7 +10,7 @@ class ForumIndexController extends Controller {
 	public function __invoke() {
 		return inertia( 'Forum/Index', [ 
 			'discussions' => DiscussionResource::collection(
-				Discussion::with( [ 'topic', 'post' ] )
+				Discussion::with( [ 'topic', 'post', 'latestPost.user' ] )
 					->orderByPinned()
 					// todo: will be removed by ordering by latest posts later
 					->latest()

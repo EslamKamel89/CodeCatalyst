@@ -38,6 +38,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
  * @property-read int|null $posts_count
  * @property-read \App\Models\Post|null $post
+ * @property-read \App\Models\Post|null $latestPost
  * @mixin \Eloquent
  */
 class Discussion extends Model {
@@ -74,6 +75,9 @@ class Discussion extends Model {
 	}
 	public function post(): HasOne {
 		return $this->hasOne( Post::class)->whereNull( 'parent_id' );
+	}
+	public function latestPost(): HasOne {
+		return $this->hasOne( Post::class)->latestOfMany();
 	}
 
 }

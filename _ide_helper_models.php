@@ -42,6 +42,7 @@ namespace App\Models{
  * @property-read int|null $posts_count
  * @property-read \App\Models\Post|null $post
  * @mixin \Eloquent
+ * @property-read \App\Models\Post|null $latestPost
  */
 	class Discussion extends \Eloquent {}
 }
