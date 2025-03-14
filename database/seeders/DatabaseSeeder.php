@@ -125,6 +125,16 @@ class DatabaseSeeder extends Seeder {
 			'username' => 'Selia Eslam',
 			'email' => 'selia@gmail.com',
 		] );
+		User::factory()->create( [ 
+			'name' => 'ahmed',
+			'username' => 'ahmed Eslam',
+			'email' => 'ahmed@gmail.com',
+		] );
+		User::factory()->create( [ 
+			'name' => 'john',
+			'username' => 'john doe',
+			'email' => 'john@gmail.com',
+		] );
 		collect( $this->topics )->each( function (string $topic, int $index) {
 			/** @var Topic $topicModel */
 			$topicModel = Topic::create( [ 

@@ -6,11 +6,13 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int|null $user_id
@@ -78,6 +80,33 @@ class Discussion extends Model {
 	}
 	public function latestPost(): HasOne {
 		return $this->hasOne( Post::class)->latestOfMany();
+	}
+	// public function particpants(): HasManyThrough {
+	// 	return $this->hasManyThrough(
+	// 		User::class,
+	// 		Post::class,
+	// 		'discussion_id',
+	// 		'id',
+	// 		'id',
+	// 		'id'
+	// 	)->distinct();
+	// 	return $this->hasManyThrough(
+	// 		related: User::class,
+	// 		through: Post::class,
+	// 		firstKey: 'discussion_id',
+	// 		secondKey: 'id',
+	// 		localKey: 'id',
+	// 		secondLocalKey: 'user_id'
+	// 	)->distinct();
+	// }
+
+	public function particpants(): BelongsToMany {
+		return $this->belongsToMany(
+			User::class,
+			'posts',
+			'discussion_id',
+			'user_id',
+		)->distinct();
 	}
 
 }
