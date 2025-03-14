@@ -21,7 +21,16 @@
                         </h2>
                     </div>
                 </div>
-                <div v-if="!hideAvatar">Avatars</div>
+                <div v-if="!hideAvatar" class="flex flex-wrap -space-x-2">
+                    <div v-for="user in discussion.particpants" :key="user.id">
+                        <img
+                            class="h-7 w-7 rounded-full ring-2 ring-white"
+                            :src="user.avatar_url"
+                            alt=""
+                            :title="user.username"
+                        />
+                    </div>
+                </div>
             </div>
             <template v-if="!hideAvatar">
                 <div class="mb-3 px-5 text-sm font-thin text-gray-500">

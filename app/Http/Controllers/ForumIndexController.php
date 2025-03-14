@@ -13,7 +13,8 @@ class ForumIndexController extends Controller {
 				Discussion::with( [ 'topic', 'post', 'latestPost.user', 'particpants' ] )
 					->orderByPinned()
 					// todo: will be removed by ordering by latest posts later
-					->latest()
+					// ->latest()
+					->orderBy( 'id', 'desc' )
 					->paginate( 10 ),
 			),
 		] );
