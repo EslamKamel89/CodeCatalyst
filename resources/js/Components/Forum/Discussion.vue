@@ -21,16 +21,29 @@
                         </h2>
                     </div>
                 </div>
-                <div v-if="!hideAvatar" class="flex flex-wrap -space-x-2">
-                    <div v-for="user in discussion.particpants" :key="user.id">
-                        <img
-                            class="h-7 w-7 rounded-full ring-2 ring-white"
-                            :src="user.avatar_url"
-                            alt=""
-                            :title="user.username"
-                        />
+                <template v-if="!hideAvatar">
+                    <div class="flex items-center gap-x-2">
+                        <div class="flex items-center -space-x-2">
+                            <div
+                                v-for="user in particpants"
+                                :key="user.id"
+                                class="h-7 w-7 first-of-type:h-10 first-of-type:w-10"
+                            >
+                                <img
+                                    class="rounded-full ring-2 ring-white"
+                                    :src="user.avatar_url"
+                                    alt=""
+                                    :title="user.username"
+                                />
+                            </div>
+                        </div>
+                        <div v-if="discussion.particpants.length > avatarLimit">
+                            +
+                            {{ discussion.particpants.length - avatarLimit }}
+                            more
+                        </div>
                     </div>
-                </div>
+                </template>
             </div>
             <template v-if="!hideAvatar">
                 <div class="mb-3 px-5 text-sm font-thin text-gray-500">
@@ -73,9 +86,14 @@
 <script setup lang="ts">
 import { Discussion } from '@/types/types';
 import { Link } from '@inertiajs/vue3';
+import { computed } from 'vue';
 
-defineProps<{
+const props = defineProps<{
     discussion: Discussion;
     hideAvatar?: boolean | null;
 }>();
+const avatarLimit = 4;
+const particpants = computed(() => {
+    return [...props.discussion.particpants].splice(0, avatarLimit);
+});
 </script>

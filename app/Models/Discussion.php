@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property int|null $user_id
@@ -41,6 +41,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property-read int|null $posts_count
  * @property-read \App\Models\Post|null $post
  * @property-read \App\Models\Post|null $latestPost
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $particpants
+ * @property-read int|null $particpants_count
  * @mixin \Eloquent
  */
 class Discussion extends Model {
