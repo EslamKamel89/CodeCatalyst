@@ -63,7 +63,7 @@
                             >Last Post by
                             {{
                                 discussion.latest_post?.user?.username ??
-                                'Unknown'
+                                '[User Deleted]'
                             }}
                             <time
                                 :title="

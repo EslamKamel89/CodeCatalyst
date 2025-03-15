@@ -60,7 +60,7 @@ export interface Post {
     body_preview?: string;
     created_at: DateTime;
     updated_at: DateTime;
-    user: User;
+    user?: User;
     discussion: Discussion;
 }
 
