@@ -11,10 +11,10 @@ class ForumIndexController extends Controller {
 		return inertia( 'Forum/Index', [ 
 			'discussions' => DiscussionResource::collection(
 				Discussion::with( [ 'topic', 'post', 'latestPost.user', 'particpants' ] )
-					->orderByPinned()
-					// todo: will be removed by ordering by latest posts later
+					// ->orderByPinned()
+					->orderByLastPost()
 					// ->latest()
-					->orderBy( 'id', 'desc' )
+					// ->orderBy( 'id', 'desc' )
 					->paginate( 10 ),
 			),
 		] );

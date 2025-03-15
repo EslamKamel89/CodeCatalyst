@@ -22,7 +22,9 @@
                     </div>
                 </div>
                 <template v-if="!hideAvatar">
-                    <div class="flex items-center gap-x-2">
+                    <div
+                        class="flex flex-col items-center gap-y-1 text-xs font-thin text-gray-400"
+                    >
                         <div class="flex items-center -space-x-2">
                             <div
                                 v-for="user in particpants"
@@ -94,6 +96,6 @@ const props = defineProps<{
 }>();
 const avatarLimit = 4;
 const particpants = computed(() => {
-    return [...props.discussion.particpants].splice(0, avatarLimit);
+    return props.discussion.particpants.slice(0, avatarLimit);
 });
 </script>
