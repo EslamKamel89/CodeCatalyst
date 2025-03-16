@@ -34,15 +34,14 @@
         </div>
         <PaginationComp :pagination="discussions.meta" />
         <template #side>
-            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">Side Slot</div>
-            </div>
+            <Navigation />
         </template>
     </FourmLayout>
 </template>
 
 <script setup lang="ts">
 import Discussion from '@/Components/Forum/Discussion.vue';
+import Navigation from '@/Components/Forum/Navigation.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PaginationComp from '@/Components/PaginationComp.vue';
 import Select from '@/Components/Select.vue';
