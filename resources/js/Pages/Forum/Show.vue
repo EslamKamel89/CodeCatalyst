@@ -10,7 +10,7 @@
 
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
-                <Discussion :discussion="discussion" :hide-avatar="true" />
+                <Discussion :discussion="discussion" :showPage="true" />
             </div>
         </div>
         <template v-if="posts.data.length">

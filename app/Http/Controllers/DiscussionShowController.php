@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class DiscussionShowController extends Controller {
 	public function __invoke( Discussion $discussion ) {
-		$discussion->load( [ 'topic' ] );
+		$discussion->load( [ 'topic' ] )->loadCount( 'replies' );
 		return inertia( 'Forum/Show', [ 
 			'discussion' => DiscussionResource::make( $discussion ),
 			'posts' => PostResource::collection(

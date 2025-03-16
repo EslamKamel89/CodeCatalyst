@@ -21,7 +21,7 @@
                         </h2>
                     </div>
                 </div>
-                <template v-if="!hideAvatar">
+                <template v-if="!showPage">
                     <div
                         class="flex flex-col items-center gap-y-1 text-xs font-thin text-gray-400"
                     >
@@ -47,7 +47,7 @@
                     </div>
                 </template>
             </div>
-            <template v-if="!hideAvatar">
+            <template v-if="!showPage">
                 <div class="mb-3 px-5 text-sm font-thin text-gray-500">
                     <div class="line-clamp-1">
                         {{ discussion.post?.body_preview }}
@@ -77,9 +77,26 @@
                                     discussion.latest_post?.created_at.human
                                 }}</time
                             ><span v-if="discussion.replies_count">
-                                | {{ discussion.replies_count }}</span
+                                |
+                                {{
+                                    pluralize(
+                                        'reply',
+                                        discussion.replies_count,
+                                        true,
+                                    )
+                                }}</span
                             ></Link
                         >
+                    </div>
+                </div>
+            </template>
+            <template v-else>
+                <div
+                    v-if="discussion.replies_count"
+                    class="flex w-full justify-end text-sm text-gray-500"
+                >
+                    <div>
+                        {{ pluralize('reply', discussion.replies_count, true) }}
                     </div>
                 </div>
             </template>
@@ -90,11 +107,11 @@
 <script setup lang="ts">
 import { Discussion } from '@/types/types';
 import { Link } from '@inertiajs/vue3';
+import pluralize from 'pluralize';
 import { computed } from 'vue';
-
 const props = defineProps<{
     discussion: Discussion;
-    hideAvatar?: boolean | null;
+    showPage?: boolean | null;
 }>();
 const avatarLimit = 4;
 const particpants = computed(() => {
