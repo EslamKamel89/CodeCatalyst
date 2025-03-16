@@ -87,6 +87,9 @@ class Discussion extends Model {
 	public function posts(): HasMany {
 		return $this->hasMany( Post::class);
 	}
+	public function replies(): HasMany {
+		return $this->hasMany( Post::class)->whereNotNull( 'parent_id' );
+	}
 	public function post(): HasOne {
 		return $this->hasOne( Post::class)->whereNull( 'parent_id' );
 	}

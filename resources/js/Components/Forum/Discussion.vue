@@ -76,6 +76,8 @@
                                 {{
                                     discussion.latest_post?.created_at.human
                                 }}</time
+                            ><span v-if="discussion.replies_count">
+                                | {{ discussion.replies_count }}</span
                             ></Link
                         >
                     </div>

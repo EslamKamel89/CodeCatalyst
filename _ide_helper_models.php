@@ -46,6 +46,8 @@ namespace App\Models{
  * @property-read int|null $particpants_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion orderByLastPost()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $replies
+ * @property-read int|null $replies_count
  */
 	class Discussion extends \Eloquent {}
 }

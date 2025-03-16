@@ -11,6 +11,7 @@ class ForumIndexController extends Controller {
 		return inertia( 'Forum/Index', [ 
 			'discussions' => DiscussionResource::collection(
 				Discussion::with( [ 'topic', 'post', 'latestPost.user', 'particpants' ] )
+					->withCount( 'replies' )
 					// ->orderByPinned()
 					->orderByLastPost()
 					// ->latest()
