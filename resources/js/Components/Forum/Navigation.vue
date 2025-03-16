@@ -7,7 +7,9 @@
                         <Link :href="route('home')">All Discussions</Link>
                     </li>
                     <li>
-                        <Link :href="route('home')">No Repiies</Link>
+                        <Link :href="route('home', { 'filter[noreplies]': 1 })"
+                            >No Repiies</Link
+                        >
                     </li>
                 </ul>
             </nav>
