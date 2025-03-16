@@ -4,10 +4,23 @@
             <nav>
                 <ul class="space-y-2">
                     <li>
-                        <Link :href="route('home')">All Discussions</Link>
+                        <Link
+                            :href="route('home')"
+                            :class="{
+                                'bg-blue-50 font-bold text-blue-700':
+                                    !query.filter &&
+                                    $page.component === 'Forum/Index',
+                            }"
+                            >All Discussions</Link
+                        >
                     </li>
                     <li>
-                        <Link :href="route('home', { 'filter[noreplies]': 1 })"
+                        <Link
+                            :href="route('home', { 'filter[noreplies]': 1 })"
+                            :class="{
+                                'bg-blue-50 font-bold text-blue-700':
+                                    query.filter?.noreplies,
+                            }"
                             >No Repiies</Link
                         >
                     </li>
@@ -18,5 +31,9 @@
 </template>
 
 <script setup lang="ts">
+import { DiscussionIndexQuery } from '@/types/types';
 import { Link } from '@inertiajs/vue3';
+defineProps<{
+    query: DiscussionIndexQuery;
+}>();
 </script>

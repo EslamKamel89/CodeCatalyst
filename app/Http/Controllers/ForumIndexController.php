@@ -10,8 +10,10 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class ForumIndexController extends Controller {
-	public function __invoke() {
+	public function __invoke( Request $request ) {
+		// dd( $request->query() );
 		return inertia( 'Forum/Index', [ 
+			'query' => (object) $request->query(),
 			'discussions' => DiscussionResource::collection(
 				QueryBuilder::for( Discussion::class)
 					->allowedFilters( $this->allowedFilters() )
@@ -21,7 +23,7 @@ class ForumIndexController extends Controller {
 					->orderByLastPost()
 					// ->latest()
 					// ->orderBy( 'id', 'desc' )
-					->paginate( 10 ),
+					->paginate( 1 )->withQueryString(),
 			),
 		] );
 	}

@@ -34,7 +34,7 @@
         </div>
         <PaginationComp :pagination="discussions.meta" />
         <template #side>
-            <Navigation />
+            <Navigation :query />
         </template>
     </FourmLayout>
 </template>
@@ -46,11 +46,16 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PaginationComp from '@/Components/PaginationComp.vue';
 import Select from '@/Components/Select.vue';
 import FourmLayout from '@/Layouts/FourmLayout.vue';
-import { Discussion as DiscussionType, Pagination } from '@/types/types';
+import {
+    DiscussionIndexQuery,
+    Discussion as DiscussionType,
+    Pagination,
+} from '@/types/types';
 import { Head, usePage } from '@inertiajs/vue3';
 
 const page = usePage();
 defineProps<{
     discussions: Pagination<DiscussionType>;
+    query: DiscussionIndexQuery;
 }>();
 </script>

@@ -69,3 +69,11 @@ export interface DateTime {
     human: string;
     datetime: string;
 }
+
+export interface DiscussionIndexQuery {
+    filter?: DiscussionIndexFilter;
+}
+
+export interface DiscussionIndexFilter {
+    noreplies?: string;
+}
