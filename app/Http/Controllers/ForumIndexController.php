@@ -23,7 +23,7 @@ class ForumIndexController extends Controller {
 					->orderByLastPost()
 					// ->latest()
 					// ->orderBy( 'id', 'desc' )
-					->paginate( 1 )->withQueryString(),
+					->paginate( 10 )->withQueryString(),
 			),
 		] );
 	}
