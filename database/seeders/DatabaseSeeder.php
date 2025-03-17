@@ -145,8 +145,9 @@ class DatabaseSeeder extends Seeder {
 			] );
 			$i = 1;
 			foreach ( $this->discussionTitles[ $topic ] as $key => $value ) {
+				$userId = User::inRandomOrder()->first()->id;
 				$discussion = Discussion::create( [ 
-					'user_id' => User::inRandomOrder()->first()->id,
+					'user_id' => $userId,
 					'topic_id' => $topicModel->id,
 					'title' => $key,
 					'slug' => fake()->slug(),
@@ -157,7 +158,7 @@ class DatabaseSeeder extends Seeder {
 				$postModel = null;
 				foreach ( $value as $key => $post ) {
 					$postModel = Post::create( [ 
-						'user_id' => User::inRandomOrder()->first()->id,
+						'user_id' => $key == 0 ? $userId : User::inRandomOrder()->first()->id,
 						'discussion_id' => $discussion->id,
 						'parent_id' => $postModel?->id,
 						'body' => $post,

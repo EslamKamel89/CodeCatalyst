@@ -46,6 +46,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion orderByLastPost()
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $replies
  * @property-read int|null $replies_count
+ * @property-read \App\Models\User|null $user
  * @mixin \Eloquent
  */
 class Discussion extends Model {
@@ -66,7 +67,7 @@ class Discussion extends Model {
 	public function topic(): BelongsTo {
 		return $this->belongsTo( Topic::class);
 	}
-	public function users(): BelongsTo {
+	public function user(): BelongsTo {
 		return $this->belongsTo( User::class);
 	}
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\QueryFilters\MineQueryFilter;
 use App\Http\QueryFilters\NoReplyQueryFilter;
+use App\Http\QueryFilters\ParticipatingQueryFilter;
 use App\Http\Resources\DiscussionResource;
 use App\Models\Discussion;
 use Illuminate\Http\Request;
@@ -29,7 +31,9 @@ class ForumIndexController extends Controller {
 	}
 	protected function allowedFilters(): array {
 		return [ 
-			AllowedFilter::custom( 'noreplies', new NoReplyQueryFilter() )
+			AllowedFilter::custom( 'noreplies', new NoReplyQueryFilter() ),
+			AllowedFilter::custom( 'mine', new MineQueryFilter() ),
+			AllowedFilter::custom( 'participating', new ParticipatingQueryFilter() ),
 		];
 	}
 }

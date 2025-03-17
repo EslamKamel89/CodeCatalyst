@@ -76,4 +76,6 @@ export interface DiscussionIndexQuery {
 
 export interface DiscussionIndexFilter {
     noreplies?: string;
+    mine?: string;
+    participating?: string;
 }

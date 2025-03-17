@@ -7,6 +7,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
 /*
 app/http/controllers
 app\Models
@@ -16,7 +17,7 @@ resources\js\Components\Forum
 
 
 Route::get( '/', ForumIndexController::class)->name( 'home' );
-Route::get( '/{discussion:slug}', DiscussionShowController::class)->name( 'discussions.show' );
+Route::get( '/discussion/{discussion:slug}', DiscussionShowController::class)->name( 'discussions.show' );
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
