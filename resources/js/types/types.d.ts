@@ -78,4 +78,5 @@ export interface DiscussionIndexFilter {
     noreplies?: string;
     mine?: string;
     participating?: string;
+    topic_id?: number;
 }

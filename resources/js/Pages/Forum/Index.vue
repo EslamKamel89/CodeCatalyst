@@ -10,19 +10,7 @@
 
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
-                <div>
-                    <InputLabel class="sr-only" value="Topics" for="topics" />
-                    <Select id="topics">
-                        <option>All Topics</option>
-                        <option
-                            v-for="topic in page.props.topics"
-                            :key="topic.id"
-                            value="topic.slug"
-                        >
-                            {{ topic.name }}
-                        </option>
-                    </Select>
-                </div>
+                <TopicSelector :query />
             </div>
         </div>
         <div class="space-y-2">
@@ -42,18 +30,16 @@
 <script setup lang="ts">
 import Discussion from '@/Components/Forum/Discussion.vue';
 import Navigation from '@/Components/Forum/Navigation.vue';
-import InputLabel from '@/Components/InputLabel.vue';
+import TopicSelector from '@/Components/Forum/TopicSelector.vue';
 import PaginationComp from '@/Components/PaginationComp.vue';
-import Select from '@/Components/Select.vue';
 import FourmLayout from '@/Layouts/FourmLayout.vue';
 import {
     DiscussionIndexQuery,
     Discussion as DiscussionType,
     Pagination,
 } from '@/types/types';
-import { Head, usePage } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 
-const page = usePage();
 defineProps<{
     discussions: Pagination<DiscussionType>;
     query: DiscussionIndexQuery;

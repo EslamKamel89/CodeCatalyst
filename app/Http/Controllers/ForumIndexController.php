@@ -19,7 +19,7 @@ class ForumIndexController extends Controller {
 			'discussions' => DiscussionResource::collection(
 				QueryBuilder::for( Discussion::class)
 					->allowedFilters( $this->allowedFilters() )
-					->with( [ 'topic', 'post', 'latestPost.user', 'particpants' ] )
+					->with( [ 'topic', 'post', 'latestPost.user', 'particpants',] )
 					->withCount( 'replies' )
 					// ->orderByPinned()
 					->orderByLastPost()
@@ -34,6 +34,7 @@ class ForumIndexController extends Controller {
 			AllowedFilter::custom( 'noreplies', new NoReplyQueryFilter() ),
 			AllowedFilter::custom( 'mine', new MineQueryFilter() ),
 			AllowedFilter::custom( 'participating', new ParticipatingQueryFilter() ),
+			'topic_id',
 		];
 	}
 }

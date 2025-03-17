@@ -9,7 +9,7 @@
                         <div
                             class="inline-flex items-center rounded-lg bg-gray-100 px-3 py-1 text-sm text-gray-600"
                         >
-                            {{ discussion.topic.name }}
+                            {{ discussion.topic?.name }}
                         </div>
                         <h2 class="text-lg font-medium">
                             <template v-if="discussion.is_pinned"
@@ -115,6 +115,6 @@ const props = defineProps<{
 }>();
 const avatarLimit = 4;
 const particpants = computed(() => {
-    return props.discussion.particpants.slice(0, avatarLimit);
+    return props?.discussion?.particpants?.slice(0, avatarLimit);
 });
 </script>
