@@ -1,7 +1,7 @@
 <template>
     <div>
         <InputLabel class="sr-only" value="Topics" for="topics" />
-        <select id="topics" v-model="selectedTopic">
+        <select id="topics" v-model="selectedTopic" class="rounded-xl py-2">
             <option :value="0">All Topics</option>
             <option
                 v-for="topic in page.props.topics"

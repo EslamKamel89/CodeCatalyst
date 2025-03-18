@@ -10,8 +10,10 @@
             <div class="col-span-5"><slot /></div>
         </div>
     </AuthenticatedLayout>
+    <CreateDiscussionForm />
 </template>
 
 <script setup lang="ts">
+import CreateDiscussionForm from '@/Components/Forum/CreateDiscussionForm.vue';
 import AuthenticatedLayout from './AuthenticatedLayout.vue';
 </script>
