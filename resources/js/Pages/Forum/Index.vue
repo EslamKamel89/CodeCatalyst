@@ -26,8 +26,9 @@
                 @click="toggleForm"
                 class="btn btn-sm w-full text-sm text-white"
                 :class="{ 'btn-success': !isVisible, 'btn-warning': isVisible }"
+                v-if="page.props.auth.user"
             >
-                {{ isVisible ? 'Hide Form' : 'Show Form' }}
+                {{ isVisible ? 'Hide Form' : 'Start A Conversation' }}
             </button>
             <Navigation :query />
         </template>
@@ -46,7 +47,7 @@ import {
     Discussion as DiscussionType,
     Pagination,
 } from '@/types/types';
-import { Head } from '@inertiajs/vue3';
+import { Head, usePage } from '@inertiajs/vue3';
 
 defineProps<{
     discussions: Pagination<DiscussionType>;
@@ -54,4 +55,5 @@ defineProps<{
 }>();
 
 const { toggleForm, isVisible } = useCreateDiscussion();
+const page = usePage();
 </script>

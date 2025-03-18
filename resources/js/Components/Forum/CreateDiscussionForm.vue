@@ -1,7 +1,10 @@
 <template>
-    <FixedFormWrapper>
+    <FixedFormWrapper v-if="isVisible">
         <template #header>
-            <div class="text-lg font-medium">New Discussion</div>
+            <div class="flex items-center justify-between">
+                <div class="text-lg font-medium">New Discussion</div>
+                <div class="cursor-pointer" @click="hideForm">X</div>
+            </div>
         </template>
         <template #main>
             <div class="mt-4 flex items-start space-x-3">
@@ -44,7 +47,9 @@
 </template>
 
 <script setup lang="ts">
+import useCreateDiscussion from '@/Composables/useCreateDiscussion';
 import { usePage } from '@inertiajs/vue3';
 import FixedFormWrapper from './FixedFormWrapper.vue';
 const page = usePage();
+const { isVisible, hideForm } = useCreateDiscussion();
 </script>
