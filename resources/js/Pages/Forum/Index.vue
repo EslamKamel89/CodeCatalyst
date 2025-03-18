@@ -22,6 +22,13 @@
         </div>
         <PaginationComp :pagination="discussions.meta" />
         <template #side>
+            <button
+                @click="toggleForm"
+                class="btn btn-sm w-full text-sm text-white"
+                :class="{ 'btn-success': !isVisible, 'btn-warning': isVisible }"
+            >
+                {{ isVisible ? 'Hide Form' : 'Show Form' }}
+            </button>
             <Navigation :query />
         </template>
     </FourmLayout>
@@ -32,6 +39,7 @@ import Discussion from '@/Components/Forum/Discussion.vue';
 import Navigation from '@/Components/Forum/Navigation.vue';
 import TopicSelector from '@/Components/Forum/TopicSelector.vue';
 import PaginationComp from '@/Components/PaginationComp.vue';
+import useCreateDiscussion from '@/Composables/useCreateDiscussion';
 import FourmLayout from '@/Layouts/FourmLayout.vue';
 import {
     DiscussionIndexQuery,
@@ -44,4 +52,6 @@ defineProps<{
     discussions: Pagination<DiscussionType>;
     query: DiscussionIndexQuery;
 }>();
+
+const { toggleForm, isVisible } = useCreateDiscussion();
 </script>
