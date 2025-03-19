@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int|null $user_id
@@ -59,12 +59,20 @@ class Discussion extends Model {
 		'slug',
 		'pinned_at'
 	];
+	protected static function booted() {
+		static::created( function (Discussion $discussion) {
+			if ( ! $discussion->slug ) {
+				$discussion->update( [ 'slug' => "{$discussion->id}-" . str( $discussion->title )->slug() ] );
+			}
+		} );
+	}
 	protected function casts(): array {
 		return [ 
 			'is_pinned' => 'datetime',
 		];
 	}
 	public function topic(): BelongsTo {
+
 		return $this->belongsTo( Topic::class);
 	}
 	public function user(): BelongsTo {
