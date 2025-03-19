@@ -13,10 +13,15 @@
                         type="text"
                         class="w-full rounded-xl px-4 py-2 placeholder:text-gray-400"
                         placeholder="Enter the duscussion title"
+                        v-model="form.title"
                     />
+                    <div class="text-sm text-red-500" v-if="form.errors.title">
+                        {{ form.errors.title }}
+                    </div>
                 </div>
+
                 <div>
-                    <select class="rounded-xl py-2">
+                    <select class="rounded-xl py-2" v-model="form.topic_id">
                         <option :value="0" disabled>Choose a topic</option>
                         <option
                             v-for="topic in page.props.topics"
@@ -26,12 +31,22 @@
                             {{ topic.name }}
                         </option>
                     </select>
+                    <div
+                        class="text-sm text-red-500"
+                        v-if="form.errors.topic_id"
+                    >
+                        {{ form.errors.topic_id }}
+                    </div>
                 </div>
             </div>
             <textarea
                 class="mt-4 w-full rounded-xl placeholder:text-gray-400"
                 placeholder="Enter Your Post"
+                v-model="form.body"
             ></textarea>
+            <div class="text-sm text-red-500" v-if="form.errors.body">
+                {{ form.errors.body }}
+            </div>
         </template>
         <template #button>
             <div class="my-4">
@@ -51,5 +66,5 @@ import useCreateDiscussion from '@/Composables/useCreateDiscussion';
 import { usePage } from '@inertiajs/vue3';
 import FixedFormWrapper from './FixedFormWrapper.vue';
 const page = usePage();
-const { isVisible, hideForm } = useCreateDiscussion();
+const { isVisible, hideForm, form } = useCreateDiscussion();
 </script>
