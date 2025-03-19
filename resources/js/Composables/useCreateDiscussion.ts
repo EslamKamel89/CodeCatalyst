@@ -1,11 +1,18 @@
+import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 const isVisible = ref(false);
+const form = useForm({
+    topic_id: null as null | number,
+    title: null as null | string,
+    body: null as null | string,
+});
+// const form = useForm();
 export default function useCreateDiscussion() {
     const showForm = () => (isVisible.value = true);
     const hideForm = () => (isVisible.value = false);
     const toggleForm = () => {
         isVisible.value = !isVisible.value;
     };
-    return { isVisible, showForm, hideForm, toggleForm };
+    return { isVisible, showForm, hideForm, toggleForm, form };
 }
