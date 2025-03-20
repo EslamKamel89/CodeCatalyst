@@ -49,9 +49,10 @@
             </div>
             <template v-if="!showPage">
                 <div class="mb-3 px-5 text-sm font-thin text-gray-500">
-                    <div class="line-clamp-1">
-                        {{ discussion.post?.body_preview }}
-                    </div>
+                    <div
+                        class="markdown line-clamp-1"
+                        v-html="discussion.post?.body_preview_markdown"
+                    ></div>
                     <div class="mx-2 mt-1 flex justify-end text-xs">
                         <Link
                             :href="

@@ -29,17 +29,25 @@
             </div>
         </template>
         <template #side>
-            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">Side Slot</div>
-            </div>
+            <button
+                @click="toggleForm"
+                class="btn btn-sm w-full text-sm text-white"
+                :class="{ 'btn-success': !isVisible, 'btn-warning': isVisible }"
+                v-if="page.props.auth.user"
+            >
+                {{ isVisible ? 'Hide Form' : 'Start A Conversation' }}
+            </button>
+            <Navigation />
         </template>
     </FourmLayout>
 </template>
 
 <script setup lang="ts">
 import Discussion from '@/Components/Forum/Discussion.vue';
+import Navigation from '@/Components/Forum/Navigation.vue';
 import PostComp from '@/Components/Forum/PostComp.vue';
 import PaginationComp from '@/Components/PaginationComp.vue';
+import useCreateDiscussion from '@/Composables/useCreateDiscussion';
 import FourmLayout from '@/Layouts/FourmLayout.vue';
 import {
     Discussion as DiscussionType,
@@ -53,4 +61,5 @@ defineProps<{
     discussion: DiscussionType;
     posts: PaginationType<Post>;
 }>();
+const { toggleForm, isVisible } = useCreateDiscussion();
 </script>

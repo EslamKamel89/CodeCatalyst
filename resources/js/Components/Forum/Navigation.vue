@@ -8,7 +8,7 @@
                             :href="route('home')"
                             :class="{
                                 'bg-blue-50 font-bold text-blue-700':
-                                    !query.filter &&
+                                    !query?.filter &&
                                     $page.component === 'Forum/Index',
                             }"
                             >All Discussions</Link
@@ -19,7 +19,7 @@
                             :href="route('home', { 'filter[noreplies]': 1 })"
                             :class="{
                                 'bg-blue-50 font-bold text-blue-700':
-                                    query.filter?.noreplies,
+                                    query?.filter?.noreplies,
                             }"
                             >No Repiies</Link
                         >
@@ -34,7 +34,7 @@
                             :href="route('home', { 'filter[mine]': 1 })"
                             :class="{
                                 'bg-blue-50 font-bold text-blue-700':
-                                    query.filter?.mine &&
+                                    query?.filter?.mine &&
                                     $page.component === 'Forum/Index',
                             }"
                             >My Discussions</Link
@@ -47,7 +47,7 @@
                             "
                             :class="{
                                 'bg-blue-50 font-bold text-blue-700':
-                                    query.filter?.participating,
+                                    query?.filter?.participating,
                             }"
                             >Participating</Link
                         >
@@ -62,6 +62,6 @@
 import { DiscussionIndexQuery } from '@/types/types';
 import { Link } from '@inertiajs/vue3';
 defineProps<{
-    query: DiscussionIndexQuery;
+    query?: DiscussionIndexQuery;
 }>();
 </script>

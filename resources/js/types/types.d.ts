@@ -58,7 +58,9 @@ export interface Post {
     discussion_id: number;
     parent_id: number;
     body: string;
+    body_markdown: string;
     body_preview?: string;
+    body_preview_markdown?: string;
     created_at: DateTime;
     updated_at: DateTime;
     user?: User;

@@ -17,7 +17,11 @@ class PostResource extends JsonResource {
 			'discussion_id' => $this->discussion_id,
 			'parent_id' => $this->parent_id,
 			'body' => $this->body,
+			'body_markdown' => app( \Spatie\LaravelMarkdown\MarkdownRenderer::class)
+				->highlightTheme( 'dracula' )
+				->toHtml( $this->body ),
 			'body_preview' => str( $this->body )->limit( 200 ),
+			'body_preview_markdown' => app( \Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml( str( $this->body )->limit( 200 ) ),
 			'user' => PublicUserResource::make( $this->whenLoaded( 'user' ) ),
 			'discussion' => DiscussionResource::make( $this->whenLoaded( 'discussion' ) ),
 			'created_at' => DateTimeResource::make( $this->created_at ),

@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "daisyui": "^5.0.0",
-        "pluralize": "^8.0.0"
+        "pluralize": "^8.0.0",
+        "shiki": "^3.2.1"
     }
 }

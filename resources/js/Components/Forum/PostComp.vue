@@ -18,9 +18,7 @@
                     {{ post.created_at.human }}
                 </div>
             </div>
-            <div class="mt-3">
-                {{ post.body }}
-            </div>
+            <div class="markdown mt-3" v-html="post.body_markdown"></div>
         </div>
     </div>
 </template>
