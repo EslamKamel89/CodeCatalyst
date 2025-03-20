@@ -2,14 +2,17 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Discussion;
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Models\User;
 class StoreDiscussionRequest extends FormRequest {
 	/**
 	 * Determine if the user is authorized to make this request.
 	 */
 	public function authorize(): bool {
-		return auth()->check();
+		/** @var User $user */
+		$user = auth()->user();
+		return $user->can( 'create', Discussion::class);
 	}
 
 	/**

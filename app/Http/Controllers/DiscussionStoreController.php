@@ -8,10 +8,10 @@ use App\Http\Resources\PostResource;
 use App\Models\Discussion;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class DiscussionStoreController extends Controller {
 	public function __invoke( StoreDiscussionRequest $request ) {
-
 		$discussion = Discussion::create( [ 
 			'user_id' => auth()->id(),
 			'topic_id' => $request->topic_id,
