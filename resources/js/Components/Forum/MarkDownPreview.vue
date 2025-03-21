@@ -1,7 +1,13 @@
 <template>
     <div
-        class="mt-4 h-20 w-full overflow-y-scroll rounded-xl border border-gray-400 p-3 align-top shadow-sm"
-        v-html="markDownPreviewHtml?.html"
+        class="mt-4 max-h-40 min-h-20 w-full overflow-y-scroll rounded-xl border border-gray-400 p-3 align-top shadow-sm"
+        v-html="
+            loading
+                ? 'Please wait until loading your preview...'
+                : error
+                  ? error
+                  : markDownPreviewHtml?.html
+        "
     ></div>
 </template>
 
