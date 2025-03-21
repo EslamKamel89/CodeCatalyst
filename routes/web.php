@@ -13,13 +13,13 @@ use Inertia\Inertia;
 
 Route::get( '/', ForumIndexController::class)->name( 'home' );
 Route::get( '/discussion/{discussion:slug}', DiscussionShowController::class)->name( 'discussions.show' );
+Route::post( '/markdown', MarkDownPreviewController::class)->name( 'markdown' );
 
 Route::middleware( 'auth' )->group( function () {
 	Route::post( '/discussion', DiscussionStoreController::class)->name( 'discussions.store' );
 	Route::get( '/profile', [ ProfileController::class, 'edit' ] )->name( 'profile.edit' );
 	Route::patch( '/profile', [ ProfileController::class, 'update' ] )->name( 'profile.update' );
 	Route::delete( '/profile', [ ProfileController::class, 'destroy' ] )->name( 'profile.destroy' );
-	Route::post( '/markdown', MarkDownPreviewController::class)->name( 'markdown' );
 } );
 
 require __DIR__ . '/auth.php';
