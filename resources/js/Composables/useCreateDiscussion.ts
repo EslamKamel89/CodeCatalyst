@@ -2,6 +2,7 @@ import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 const isVisible = ref(false);
+const markDownPreview = ref(false);
 const form = useForm({
     topic_id: null as null | number,
     title: null as null | string,
@@ -14,5 +15,5 @@ export default function useCreateDiscussion() {
     const toggleForm = () => {
         isVisible.value = !isVisible.value;
     };
-    return { isVisible, showForm, hideForm, toggleForm, form };
+    return { isVisible, showForm, hideForm, toggleForm, form, markDownPreview };
 }

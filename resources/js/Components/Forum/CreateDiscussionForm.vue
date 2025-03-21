@@ -50,15 +50,16 @@
                         </div>
                     </div>
                     <textarea
-                        class="mt-4 w-full rounded-xl placeholder:text-gray-400"
+                        v-if="!markDownPreview"
+                        class="mt-4 h-20 w-full rounded-xl align-top placeholder:text-gray-400"
                         placeholder="Enter Your Post"
                         v-model="form.body"
                     ></textarea>
+                    <MarkDownPreview v-else />
                     <div class="text-sm text-red-500" v-if="form.errors.body">
                         {{ form.errors.body }}
                     </div>
                 </div>
-                <div>{{ markDownPreview }}</div>
                 <MarkDownToolBar
                     @toggle-mark-down-preview="(e) => (markDownPreview = e)"
                 />
@@ -79,12 +80,11 @@
 <script setup lang="ts">
 import useCreateDiscussion from '@/Composables/useCreateDiscussion';
 import { usePage } from '@inertiajs/vue3';
-import { ref } from 'vue';
 import FixedFormWrapper from './FixedFormWrapper.vue';
+import MarkDownPreview from './MarkDownPreview.vue';
 import MarkDownToolBar from './MarkDownToolBar.vue';
 const page = usePage();
-const { isVisible, hideForm, form } = useCreateDiscussion();
-const markDownPreview = ref(false);
+const { isVisible, hideForm, form, markDownPreview } = useCreateDiscussion();
 const submit = async () => {
     form.post(route('discussions.store'), {
         onSuccess() {
