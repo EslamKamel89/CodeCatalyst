@@ -29,14 +29,7 @@
             </div>
         </template>
         <template #side>
-            <button
-                @click="toggleForm"
-                class="btn btn-sm w-full text-sm text-white"
-                :class="{ 'btn-success': !isVisible, 'btn-warning': isVisible }"
-                v-if="page.props.auth.user"
-            >
-                {{ isVisible ? 'Hide Form' : 'Start A Conversation' }}
-            </button>
+            <ToggleFormButton />
             <Navigation />
         </template>
     </FourmLayout>
@@ -46,6 +39,7 @@
 import Discussion from '@/Components/Forum/Discussion.vue';
 import Navigation from '@/Components/Forum/Navigation.vue';
 import PostComp from '@/Components/Forum/PostComp.vue';
+import ToggleFormButton from '@/Components/Forum/ToggleFormButton.vue';
 import PaginationComp from '@/Components/PaginationComp.vue';
 import useCreateDiscussion from '@/Composables/useCreateDiscussion';
 import FourmLayout from '@/Layouts/FourmLayout.vue';
