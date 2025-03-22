@@ -7,20 +7,19 @@ import axios, {
 import { onUnmounted, ref } from 'vue';
 
 const axiosInstance: AxiosInstance = axios.create({
-    baseURL: 'http://127.0.0.1:8000', // Change this to your API base URL
-    timeout: 10000, // Request timeout in milliseconds
+    baseURL: 'http://127.0.0.1:8000',
+    timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
     },
 });
 
-// Add response interceptors
 axiosInstance.interceptors.response.use(
-    (response: AxiosResponse) => response, // Just return the response
+    (response: AxiosResponse) => response,
     (error: AxiosError) => {
         console.error('API Error:', error);
-        return Promise.reject(error); // Forward the error
+        return Promise.reject(error);
     },
 );
 

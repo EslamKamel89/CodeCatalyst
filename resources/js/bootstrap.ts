@@ -1,3 +1,4 @@
+import '@github/markdown-toolbar-element';
 import axios from 'axios';
 window.axios = axios;
 

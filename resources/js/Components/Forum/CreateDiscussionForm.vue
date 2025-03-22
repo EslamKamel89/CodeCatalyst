@@ -49,11 +49,22 @@
                             </div>
                         </div>
                     </div>
+                    <markdown-toolbar for="comment-textarea">
+                        <div class="mt-3 flex items-center gap-x-3">
+                            <md-bold class="toolbar-button">bold</md-bold>
+                            <md-header class="toolbar-button">header</md-header>
+                            <md-italic class="toolbar-button">italic</md-italic>
+                            <md-quote class="toolbar-button">quote</md-quote>
+                            <md-code class="toolbar-button">code</md-code>
+                            <md-link class="toolbar-button">link</md-link>
+                        </div>
+                    </markdown-toolbar>
                     <textarea
                         v-if="!markDownPreview"
                         class="mt-4 h-20 w-full rounded-xl align-top placeholder:text-gray-400"
                         placeholder="Enter Your Post"
                         v-model="form.body"
+                        id="comment-textarea"
                     ></textarea>
                     <MarkDownPreview v-else />
                     <div class="text-sm text-red-500" v-if="form.errors.body">
@@ -94,3 +105,9 @@ const submit = async () => {
     });
 };
 </script>
+
+<style scoped>
+.toolbar-button {
+    @apply rounded-lg bg-slate-600 px-3 py-2 text-white;
+}
+</style>
