@@ -1,6 +1,6 @@
 <template>
-    <div class="mt-2 flex justify-between">
-        <div>markdown toolbar</div>
+    <div class="mt-2 flex items-center justify-between">
+        <MarkDownToolbarComp for="comment-textarea" />
         <button
             @click="markDownPreview = !markDownPreview"
             class="btn btn-ghost btn-sm font-bold"
@@ -22,6 +22,7 @@
 
 <script setup lang="ts">
 import useCreateDiscussion from '@/Composables/useCreateDiscussion';
+import MarkDownToolbarComp from './MarkDownToolbarComp.vue';
 
 const { markDownPreview } = useCreateDiscussion();
 </script>
