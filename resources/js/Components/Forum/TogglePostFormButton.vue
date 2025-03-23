@@ -3,7 +3,7 @@
         @click="handleToggle"
         class="btn btn-sm w-full text-sm text-white"
         :class="{ 'btn-success': !isVisible, 'btn-warning': isVisible }"
-        v-if="page.props.auth.user"
+        v-if="discussion.user_can.reply"
     >
         {{ isVisible ? 'Hide Form' : 'Leave A Post' }}
     </button>

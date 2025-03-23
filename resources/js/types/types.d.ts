@@ -26,6 +26,9 @@ export interface Discussion {
     post?: Post;
     latest_post?: Post;
     particpants: User[];
+    user_can: {
+        reply: boolean;
+    };
 }
 
 export interface Links {
