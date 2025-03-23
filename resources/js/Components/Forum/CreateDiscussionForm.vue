@@ -3,7 +3,9 @@
         <template #header>
             <div class="flex items-center justify-between">
                 <div class="text-lg font-medium">New Discussion</div>
-                <div class="cursor-pointer" @click="hideForm">X</div>
+                <div class="cursor-pointer" @click="hideForm">
+                    <Svg name="close"></Svg>
+                </div>
             </div>
         </template>
         <template #main>
@@ -82,6 +84,7 @@
 <script setup lang="ts">
 import useCreateDiscussion from '@/Composables/useCreateDiscussion';
 import { usePage } from '@inertiajs/vue3';
+import Svg from '../Svg.vue';
 import FixedFormWrapper from './FixedFormWrapper.vue';
 import MarkDownPreview from './MarkDownPreview.vue';
 import MarkDownToolBar from './MarkDownToolBar.vue';

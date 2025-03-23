@@ -29,7 +29,8 @@
             </div>
         </template>
         <template #side>
-            <ToggleFormButton />
+            <!-- <ToggleFormButton />-->
+            <TogglePostFormButton :discussion />
             <Navigation />
         </template>
     </FourmLayout>
@@ -39,7 +40,7 @@
 import Discussion from '@/Components/Forum/Discussion.vue';
 import Navigation from '@/Components/Forum/Navigation.vue';
 import PostComp from '@/Components/Forum/PostComp.vue';
-import ToggleFormButton from '@/Components/Forum/ToggleFormButton.vue';
+import TogglePostFormButton from '@/Components/Forum/TogglePostFormButton.vue';
 import PaginationComp from '@/Components/PaginationComp.vue';
 import useCreateDiscussion from '@/Composables/useCreateDiscussion';
 import FourmLayout from '@/Layouts/FourmLayout.vue';
