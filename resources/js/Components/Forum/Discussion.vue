@@ -58,6 +58,7 @@
                             :href="
                                 route('discussions.show', {
                                     discussion: discussion.slug,
+                                    post: discussion.latest_post?.id,
                                 })
                             "
                             class="link link-hover"
