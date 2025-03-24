@@ -26,7 +26,7 @@
                         v-model="form.body"
                         id="comment-textarea"
                     ></textarea>
-                    <MarkDownPreview v-else />
+                    <MarkDownPreview :body="form.body ?? ''" v-else />
                     <div class="text-sm text-red-500" v-if="form.errors.body">
                         {{ form.errors.body }}
                     </div>

@@ -13,9 +13,11 @@
 
 <script setup lang="ts">
 import { useAxios } from '@/Composables/useAxios';
-import useCreateDiscussion from '@/Composables/useCreateDiscussion';
 import { onMounted } from 'vue';
-const { form } = useCreateDiscussion();
+// const { form } = useCreateDiscussion();
+const props = defineProps<{
+    body: string;
+}>();
 const {
     loading,
     error,
@@ -24,7 +26,7 @@ const {
 } = useAxios<{ html: string }>({
     url: '/markdown',
     method: 'POST',
-    data: { body: form.body },
+    data: { body: props.body },
 });
 onMounted(async () => {
     execute();

@@ -10,13 +10,15 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 
 class DiscussionShowController extends Controller {
+
+    protected static $perPage = 3;
     public function __invoke(Request $request, Discussion $discussion) {
-        if ($postId = $request->post && !$request->has('page')) {
+        if ($postId = $request->post ?? null) {
             return redirect()
                 ->route('discussions.show', [
                     'discussion' => $discussion,
-                    ...$request->query(),
-                    'page' => 1
+                    'page' => $this->getPageForPost($discussion, $postId),
+                    'postId' => $request->post
                 ]);
         }
         $discussion->load(['topic'])->loadCount('replies');
@@ -27,8 +29,16 @@ class DiscussionShowController extends Controller {
                     ->with(['user', 'discussion'])
                     // ->where( 'id', 88888888888888 )
                     ->oldest()
-                    ->paginate(3)
+                    ->paginate(self::$perPage)
             )
         ]);
+    }
+    protected function getPageForPost(Discussion $discussion,  $postId) {
+        $posts = $discussion->posts;
+        $postIndex = $posts->search(fn(Post $post) => $postId == $post->id);
+        $postIndex++;
+        $page = (int)ceil($postIndex / self::$perPage);
+        // dd($posts, $postIndex, $page);
+        return $page;
     }
 }
