@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <MarkDownToolBar
-                    @toggle-mark-down-preview="(e) => (markDownPreview = e)"
+                    @toggle-preview="(e) => (markDownPreview = e)"
                 />
                 <div class="my-4">
                     <button

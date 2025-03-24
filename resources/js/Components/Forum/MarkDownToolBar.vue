@@ -2,7 +2,7 @@
     <div class="mt-2 flex items-center justify-between">
         <MarkDownToolbarComp for="comment-textarea" />
         <button
-            @click="markDownPreview = !markDownPreview"
+            @click="handleToggle"
             class="btn btn-ghost btn-sm font-bold"
             type="button"
         >
@@ -10,19 +10,25 @@
             <span
                 class="btn btn-sm text-white"
                 :class="{
-                    'btn-success': markDownPreview,
-                    'btn-error': !markDownPreview,
+                    'btn-success': showPreview,
+                    'btn-error': !showPreview,
                 }"
             >
-                {{ markDownPreview ? 'ON' : 'OFF' }}</span
+                {{ showPreview ? 'ON' : 'OFF' }}</span
             >
         </button>
     </div>
 </template>
 
 <script setup lang="ts">
-import useCreateDiscussion from '@/Composables/useCreateDiscussion';
+import { ref } from 'vue';
 import MarkDownToolbarComp from './MarkDownToolbarComp.vue';
-
-const { markDownPreview } = useCreateDiscussion();
+const showPreview = ref(false);
+const emit = defineEmits<{
+    togglePreview: [showPreview: boolean];
+}>();
+const handleToggle = () => {
+    showPreview.value = !showPreview.value;
+    emit('togglePreview', showPreview.value);
+};
 </script>
