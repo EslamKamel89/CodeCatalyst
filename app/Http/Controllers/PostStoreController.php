@@ -15,6 +15,8 @@ class PostStoreController extends Controller {
             'parent_id' => $discussion->post->id,
             'body' => $request->body,
         ]);
-        return   redirect()->route('discussions.show', ['discussion' => $discussion]);
+        return   redirect(
+            route('discussions.show', ['discussion' => $discussion]) . '?post=' . $post->id
+        );
     }
 }
