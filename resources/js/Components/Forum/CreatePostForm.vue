@@ -59,11 +59,11 @@ const page = usePage();
 const { isVisible, hideForm, form, markDownPreview, discussion } =
     useCreatePost();
 const submit = async () => {
-    // form.post(route('discussions.store'), {
-    //     onSuccess() {
-    //         form.reset();
-    //         hideForm();
-    //     },
-    // });
+    form.post(route('posts.store', { discussion: discussion.value?.slug }), {
+        onSuccess() {
+            form.reset();
+            hideForm();
+        },
+    });
 };
 </script>

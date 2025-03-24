@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int|null $user_id
@@ -50,89 +50,89 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @mixin \Eloquent
  */
 class Discussion extends Model {
-	/** @use HasFactory<\Database\Factories\DiscussionFactory> */
-	use HasFactory;
-	protected $fillable = [ 
-		'user_id',
-		'topic_id',
-		'title',
-		'slug',
-		'pinned_at'
-	];
-	protected static function booted() {
-		static::created( function (Discussion $discussion) {
-			if ( ! $discussion->slug ) {
-				$discussion->update( [ 'slug' => "{$discussion->id}-" . str( $discussion->title )->slug() ] );
-			}
-		} );
-	}
-	protected function casts(): array {
-		return [ 
-			'is_pinned' => 'datetime',
-		];
-	}
-	public function topic(): BelongsTo {
+    /** @use HasFactory<\Database\Factories\DiscussionFactory> */
+    use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'topic_id',
+        'title',
+        'slug',
+        'pinned_at'
+    ];
+    protected static function booted() {
+        static::created(function (Discussion $discussion) {
+            if (! $discussion->slug) {
+                $discussion->update(['slug' => "{$discussion->id}-" . str($discussion->title)->slug()]);
+            }
+        });
+    }
+    protected function casts(): array {
+        return [
+            'is_pinned' => 'datetime',
+        ];
+    }
+    public function topic(): BelongsTo {
 
-		return $this->belongsTo( Topic::class);
-	}
-	public function user(): BelongsTo {
-		return $this->belongsTo( User::class);
-	}
+        return $this->belongsTo(Topic::class);
+    }
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class);
+    }
 
-	public function isPinned(): bool {
-		return $this->pinned_at != null;
-	}
+    public function isPinned(): bool {
+        return $this->pinned_at != null;
+    }
 
-	public function scopeOrderByPinned( Builder $query ) {
-		$query->orderBy( 'pinned_at', 'desc' );
-	}
+    public function scopeOrderByPinned(Builder $query) {
+        $query->orderBy('pinned_at', 'desc');
+    }
 
-	public function scopeOrderByLastPost( Builder $query ) {
-		$query->orderBy(
-			Post::select( 'created_at' )
-				->where( 'discussion_id', 'discussions.id' )
-				->latest()
-				->take( 1 ), 'desc'
-		);
-	}
-	public function posts(): HasMany {
-		return $this->hasMany( Post::class);
-	}
-	public function replies(): HasMany {
-		return $this->hasMany( Post::class)->whereNotNull( 'parent_id' );
-	}
-	public function post(): HasOne {
-		return $this->hasOne( Post::class)->whereNull( 'parent_id' );
-	}
-	public function latestPost(): HasOne {
-		return $this->hasOne( Post::class)->latestOfMany();
-	}
-	// public function particpants(): HasManyThrough {
-	// 	return $this->hasManyThrough(
-	// 		User::class,
-	// 		Post::class,
-	// 		'discussion_id',
-	// 		'id',
-	// 		'id',
-	// 		'id'
-	// 	)->distinct();
-	// 	return $this->hasManyThrough(
-	// 		related: User::class,
-	// 		through: Post::class,
-	// 		firstKey: 'discussion_id',
-	// 		secondKey: 'id',
-	// 		localKey: 'id',
-	// 		secondLocalKey: 'user_id'
-	// 	)->distinct();
-	// }
+    public function scopeOrderByLastPost(Builder $query) {
+        $query->orderBy(
+            Post::select('created_at')
+                ->where('discussion_id', 'discussions.id')
+                ->latest()
+                ->take(1),
+            'desc'
+        );
+    }
+    public function posts(): HasMany {
+        return $this->hasMany(Post::class);
+    }
+    public function replies(): HasMany {
+        return $this->hasMany(Post::class)->whereNotNull('parent_id');
+    }
+    public function post(): HasOne {
+        return $this->hasOne(Post::class)->whereNull('parent_id');
+    }
+    public function latestPost(): HasOne {
+        return $this->hasOne(Post::class)->latestOfMany();
+    }
+    // public function particpants(): HasManyThrough {
+    // 	return $this->hasManyThrough(
+    // 		User::class,
+    // 		Post::class,
+    // 		'discussion_id',
+    // 		'id',
+    // 		'id',
+    // 		'id'
+    // 	)->distinct();
+    // 	return $this->hasManyThrough(
+    // 		related: User::class,
+    // 		through: Post::class,
+    // 		firstKey: 'discussion_id',
+    // 		secondKey: 'id',
+    // 		localKey: 'id',
+    // 		secondLocalKey: 'user_id'
+    // 	)->distinct();
+    // }
 
-	public function particpants(): BelongsToMany {
-		return $this->belongsToMany(
-			User::class,
-			'posts',
-			'discussion_id',
-			'user_id',
-		)->distinct();
-	}
-
+    public function particpants(): BelongsToMany {
+        return $this->belongsToMany(
+            User::class,
+            'posts',
+            'discussion_id',
+            'user_id',
+        )->distinct();
+    }
 }
