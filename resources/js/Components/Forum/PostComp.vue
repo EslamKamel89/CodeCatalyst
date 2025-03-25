@@ -23,12 +23,20 @@
                 <div class="markdown mt-3" v-html="post.body_markdown"></div>
             </div>
         </div>
-        <div v-if="post.discussion.user_can.reply" class="flex justify-end">
+        <div class="flex justify-end gap-x-3">
             <button
+                v-if="post.discussion.user_can.reply"
                 @click="handleReply"
                 class="btn btn-success btn-sm text-xs text-white"
             >
                 Reply
+            </button>
+            <button
+                @click="handleUpdate"
+                v-if="post.user_can?.update"
+                class="btn btn-warning btn-sm text-xs text-white"
+            >
+                Edit
             </button>
         </div>
     </div>
@@ -46,4 +54,5 @@ const handleReply = () => {
     showForm();
     setDiscussion(props.post.discussion);
 };
+const handleUpdate = () => {};
 </script>

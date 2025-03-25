@@ -68,6 +68,9 @@ export interface Post {
     updated_at: DateTime;
     user?: User;
     discussion: Discussion;
+    user_can?: {
+        update: boolean;
+    };
 }
 
 export interface DateTime {
