@@ -36,6 +36,7 @@
         "@github/markdown-toolbar-element": "^2.2.3",
         "daisyui": "^5.0.0",
         "pluralize": "^8.0.0",
-        "shiki": "^3.2.1"
+        "shiki": "^3.2.1",
+        "vue-scrollto": "^2.20.0"
     }
 }

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class DiscussionShowController extends Controller {
 
-    protected static $perPage = 3;
+    protected static $perPage = 5;
     public function __invoke(Request $request, Discussion $discussion) {
         if ($postId = $request->post ?? null) {
             return redirect()
@@ -30,7 +30,8 @@ class DiscussionShowController extends Controller {
                     // ->where( 'id', 88888888888888 )
                     ->oldest()
                     ->paginate(self::$perPage)
-            )
+            ),
+            'postId' => (int) $request->postId ?? null,
         ]);
     }
     protected function getPageForPost(Discussion $discussion,  $postId) {

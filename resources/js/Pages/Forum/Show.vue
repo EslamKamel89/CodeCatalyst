@@ -52,9 +52,10 @@ import {
 import { Head, usePage } from '@inertiajs/vue3';
 
 const page = usePage();
-defineProps<{
+const props = defineProps<{
     discussion: DiscussionType;
     posts: PaginationType<Post>;
+    postId?: number | null;
 }>();
 const { toggleForm, isVisible } = useCreateDiscussion();
 </script>
