@@ -20,11 +20,39 @@
                         {{ post.created_at.human }}
                     </div>
                 </div>
-                <div class="markdown mt-3" v-html="post.body_markdown"></div>
+                <form v-if="editing">
+                    <textarea
+                        v-model="form.body"
+                        class="markdown mt-3 w-full rounded-lg"
+                    ></textarea>
+                    <div
+                        class="px-3 text-xs text-red-500"
+                        v-if="form.errors.body"
+                    >
+                        {{ form.errors.body }}
+                    </div>
+                </form>
+                <div
+                    v-else
+                    class="markdown mt-3"
+                    v-html="post.body_markdown"
+                ></div>
             </div>
         </div>
-        <div class="flex justify-end gap-x-3">
+        <div v-if="editing" class="flex justify-end gap-x-3">
+            <button class="btn btn-info btn-sm text-xs text-white">Save</button>
             <button
+                type="button"
+                @click="editing = false"
+                v-if="post.user_can?.update"
+                class="btn btn-error btn-sm text-xs text-white"
+            >
+                Cancel
+            </button>
+        </div>
+        <div class="flex justify-end gap-x-3" v-else>
+            <button
+                type="button"
                 v-if="post.discussion.user_can.reply"
                 @click="handleReply"
                 class="btn btn-success btn-sm text-xs text-white"
@@ -32,7 +60,8 @@
                 Reply
             </button>
             <button
-                @click="handleUpdate"
+                type="button"
+                @click="editing = true"
                 v-if="post.user_can?.update"
                 class="btn btn-warning btn-sm text-xs text-white"
             >
@@ -45,6 +74,8 @@
 <script setup lang="ts">
 import useCreatePost from '@/Composables/useCreatePost';
 import { Post } from '@/types/types';
+import { useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
 const props = defineProps<{
     post: Post;
@@ -54,5 +85,9 @@ const handleReply = () => {
     showForm();
     setDiscussion(props.post.discussion);
 };
+const editing = ref(false);
+const form = useForm({
+    body: props.post.body,
+});
 const handleUpdate = () => {};
 </script>
