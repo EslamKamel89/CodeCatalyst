@@ -42,20 +42,27 @@ import Navigation from '@/Components/Forum/Navigation.vue';
 import PostComp from '@/Components/Forum/PostComp.vue';
 import TogglePostFormButton from '@/Components/Forum/TogglePostFormButton.vue';
 import PaginationComp from '@/Components/PaginationComp.vue';
-import useCreateDiscussion from '@/Composables/useCreateDiscussion';
+import useScroll from '@/Composables/useScroll';
 import FourmLayout from '@/Layouts/FourmLayout.vue';
 import {
     Discussion as DiscussionType,
     Pagination as PaginationType,
     Post,
 } from '@/types/types';
-import { Head, usePage } from '@inertiajs/vue3';
-
-const page = usePage();
+import { Head } from '@inertiajs/vue3';
+import { onMounted, onUpdated } from 'vue';
 const props = defineProps<{
     discussion: DiscussionType;
     posts: PaginationType<Post>;
     postId?: number | null;
 }>();
-const { toggleForm, isVisible } = useCreateDiscussion();
+
+onMounted(() => {
+    if (!props.postId) return;
+    useScroll().scrollTo(`#post-${props.postId}`);
+});
+onUpdated(() => {
+    if (!props.postId) return;
+    useScroll().scrollTo(`#post-${props.postId}`);
+});
 </script>
