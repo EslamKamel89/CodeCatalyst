@@ -74,6 +74,7 @@
             <button
                 type="button"
                 v-if="post.user_can?.delete"
+                @click="deletePost"
                 class="btn btn-error btn-sm text-xs text-white"
             >
                 Delete
@@ -84,6 +85,7 @@
 
 <script setup lang="ts">
 import useCreatePost from '@/Composables/useCreatePost';
+import useDeletePost from '@/Composables/useDeletePost';
 import useEditPost from '@/Composables/useEditPost';
 import { Post } from '@/types/types';
 const props = defineProps<{
@@ -91,6 +93,7 @@ const props = defineProps<{
 }>();
 const { editing, form, editPost } = useEditPost(props.post);
 const { showForm, setDiscussion } = useCreatePost();
+const { deletePost } = useDeletePost(props.post);
 const handleReply = () => {
     showForm();
     setDiscussion(props.post.discussion);
