@@ -4,6 +4,7 @@ use App\Http\Controllers\DiscussionShowController;
 use App\Http\Controllers\DiscussionStoreController;
 use App\Http\Controllers\ForumIndexController;
 use App\Http\Controllers\MarkDownPreviewController;
+use App\Http\Controllers\PostDeleteController;
 use App\Http\Controllers\PostPatchController;
 use App\Http\Controllers\PostStoreController;
 use App\Http\Controllers\ProfileController;
@@ -24,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/discussion/{discussion:slug}/posts', PostStoreController::class)->name('posts.store');
     Route::patch('/posts/{post}', PostPatchController::class)->name('posts.edit');
+    Route::delete('/posts/{post}', PostDeleteController::class)->name('posts.delete');
 });
 
 require __DIR__ . '/auth.php';
