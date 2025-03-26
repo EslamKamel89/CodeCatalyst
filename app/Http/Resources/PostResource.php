@@ -31,6 +31,7 @@ class PostResource extends JsonResource {
             'updated_at' => DateTimeResource::make($this->updated_at),
             'user_can' => [
                 'update' => auth()->user()?->can('update', $this->resource),
+                'delete' => auth()->user()?->can('delete', $this->resource),
             ]
         ];
     }

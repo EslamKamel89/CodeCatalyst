@@ -11,6 +11,10 @@ class PostPolicy {
         return $user->id == $post->user_id;
     }
 
+    public function delete(User $user, Post $post): bool {
+        return $user->id == $post->user_id;
+    }
+
     // public function viewAny(?User $user): bool {
     //     return true;
     // }
@@ -24,9 +28,6 @@ class PostPolicy {
     // }
 
 
-    // public function delete(?User $user, Post $post): bool {
-    //     return true;
-    // }
 
     // public function restore(?User $user, Post $post): bool {
     //     return true;

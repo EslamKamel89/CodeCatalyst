@@ -71,6 +71,13 @@
             >
                 Edit
             </button>
+            <button
+                type="button"
+                v-if="post.user_can?.delete"
+                class="btn btn-error btn-sm text-xs text-white"
+            >
+                Delete
+            </button>
         </div>
     </div>
 </template>

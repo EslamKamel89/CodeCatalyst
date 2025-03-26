@@ -70,6 +70,7 @@ export interface Post {
     discussion: Discussion;
     user_can?: {
         update: boolean;
+        delete: boolean;
     };
 }
 
