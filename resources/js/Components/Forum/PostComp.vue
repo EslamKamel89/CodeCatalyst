@@ -20,7 +20,7 @@
                         {{ post.created_at.human }}
                     </div>
                 </div>
-                <form v-if="editing">
+                <div v-if="editing">
                     <textarea
                         v-model="form.body"
                         class="markdown mt-3 w-full rounded-lg"
@@ -31,7 +31,7 @@
                     >
                         {{ form.errors.body }}
                     </div>
-                </form>
+                </div>
                 <div
                     v-else
                     class="markdown mt-3"
@@ -40,7 +40,12 @@
             </div>
         </div>
         <div v-if="editing" class="flex justify-end gap-x-3">
-            <button class="btn btn-info btn-sm text-xs text-white">Save</button>
+            <button
+                @click="editPost"
+                class="btn btn-info btn-sm text-xs text-white"
+            >
+                Save
+            </button>
             <button
                 type="button"
                 @click="editing = false"
@@ -52,7 +57,6 @@
         </div>
         <div class="flex justify-end gap-x-3" v-else>
             <button
-                type="button"
                 v-if="post.discussion.user_can.reply"
                 @click="handleReply"
                 class="btn btn-success btn-sm text-xs text-white"
@@ -73,21 +77,15 @@
 
 <script setup lang="ts">
 import useCreatePost from '@/Composables/useCreatePost';
+import useEditPost from '@/Composables/useEditPost';
 import { Post } from '@/types/types';
-import { useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
-
 const props = defineProps<{
     post: Post;
 }>();
+const { editing, form, editPost } = useEditPost(props.post);
 const { showForm, setDiscussion } = useCreatePost();
 const handleReply = () => {
     showForm();
     setDiscussion(props.post.discussion);
 };
-const editing = ref(false);
-const form = useForm({
-    body: props.post.body,
-});
-const handleUpdate = () => {};
 </script>
