@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostPatchRequest;
 use App\Models\Discussion;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostPatchController extends Controller {
 
-    public function __invoke(Request $request, Post $post) {
-        dd($request->all(), $post);
+    public function __invoke(PostPatchRequest $request, Post $post) {
+        $post->update($request->validated());
+        return redirect()->back();
     }
 }

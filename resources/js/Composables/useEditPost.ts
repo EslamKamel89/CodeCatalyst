@@ -7,7 +7,13 @@ export default function useEditPost(post: Post) {
         body: post.body,
     });
     const editPost = () => {
-        form.patch(route('posts.edit', { post: post.id }));
+        form.patch(route('posts.edit', { post: post.id }), {
+            preserveScroll: true,
+            preserveState: true,
+            onSuccess() {
+                editing.value = false;
+            },
+        });
     };
     return { editing, form, editPost };
 }
