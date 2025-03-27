@@ -51,8 +51,9 @@
                 @click="editing = false"
                 v-if="post.user_can?.update"
                 class="btn btn-error btn-sm text-xs text-white"
+                title="Cancel"
             >
-                Cancel
+                <XMarkIcon class="size-5" />
             </button>
         </div>
         <div class="flex justify-end gap-x-3" v-else>
@@ -60,24 +61,27 @@
                 v-if="post.discussion.user_can.reply"
                 @click="handleReply"
                 class="btn btn-success btn-sm text-xs text-white"
+                title="Reply"
             >
-                Reply
+                <ChatBubbleBottomCenterTextIcon class="size-5" />
             </button>
             <button
                 type="button"
                 @click="editing = true"
                 v-if="post.user_can?.update"
                 class="btn btn-warning btn-sm text-xs text-white"
+                title="Edit"
             >
-                Edit
+                <PencilSquareIcon class="size-5" />
             </button>
             <button
                 type="button"
                 v-if="post.user_can?.delete"
                 @click="deletePost"
                 class="btn btn-error btn-sm text-xs text-white"
+                title="Delete"
             >
-                Delete
+                <TrashIcon class="size-5" />
             </button>
         </div>
     </div>
@@ -88,6 +92,12 @@ import useCreatePost from '@/Composables/useCreatePost';
 import useDeletePost from '@/Composables/useDeletePost';
 import useEditPost from '@/Composables/useEditPost';
 import { Post } from '@/types/types';
+import {
+    ChatBubbleBottomCenterTextIcon,
+    PencilSquareIcon,
+    TrashIcon,
+    XMarkIcon,
+} from '@heroicons/vue/16/solid';
 const props = defineProps<{
     post: Post;
 }>();

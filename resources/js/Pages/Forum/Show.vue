@@ -15,6 +15,7 @@
                     <button
                         v-if="discussion.user_can.delete"
                         class="btn btn-error btn-sm text-white"
+                        title="Delete"
                     >
                         <TrashIcon class="size-5" />
                     </button>
