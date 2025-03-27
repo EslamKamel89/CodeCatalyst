@@ -13,6 +13,6 @@ class DiscussionDeleteController extends Controller {
     public function __invoke(Request $request, Discussion $discussion) {
         Gate::authorize('delete', $discussion);
         $discussion->delete();
-        return redirect()->back();
+        return redirect()->route('home');
     }
 }

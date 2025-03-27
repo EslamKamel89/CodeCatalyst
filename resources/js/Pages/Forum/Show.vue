@@ -16,6 +16,7 @@
                         v-if="discussion.user_can.delete"
                         class="btn btn-error btn-sm text-white"
                         title="Delete"
+                        @click="deleteDiscussion"
                     >
                         <TrashIcon class="size-5" />
                     </button>
@@ -51,6 +52,7 @@ import Navigation from '@/Components/Forum/Navigation.vue';
 import PostComp from '@/Components/Forum/PostComp.vue';
 import TogglePostFormButton from '@/Components/Forum/TogglePostFormButton.vue';
 import PaginationComp from '@/Components/PaginationComp.vue';
+import useDeleteDiscussion from '@/Composables/useDeleteDiscussion';
 import useScroll from '@/Composables/useScroll';
 import FourmLayout from '@/Layouts/FourmLayout.vue';
 import {
@@ -75,4 +77,5 @@ onUpdated(() => {
     if (!props.postId) return;
     useScroll().scrollTo(`#post-${props.postId}`);
 });
+const { deleteDiscussion } = useDeleteDiscussion(props.discussion);
 </script>
