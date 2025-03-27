@@ -30,6 +30,7 @@ export interface Discussion {
     user_can: {
         reply: boolean;
         delete: boolean;
+        solve: boolean;
     };
 }
 

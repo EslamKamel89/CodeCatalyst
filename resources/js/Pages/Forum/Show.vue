@@ -7,7 +7,6 @@
                 {{ discussion.title }}
             </h2>
         </template> -->
-
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
             <div class="relative p-6 text-gray-900">
                 <Discussion :discussion="discussion" :showPage="true" />

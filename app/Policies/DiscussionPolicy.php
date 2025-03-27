@@ -37,4 +37,7 @@ class DiscussionPolicy {
     public function reply(User $user, Discussion $discussion) {
         return true;
     }
+    public function solve(User $user, Discussion $discussion) {
+        return $discussion->user_id == $user->id;
+    }
 }
