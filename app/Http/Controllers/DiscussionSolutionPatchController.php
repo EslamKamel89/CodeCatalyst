@@ -12,6 +12,7 @@ class DiscussionSolutionPatchController extends Controller {
 
     public function __invoke(DiscussionSolutionPatchRequest $request, Discussion $discussion) {
         //TODO: make sure to validate the post belongs to a discussion
+        // dd($discussion, $request->post_id);
         $discussion->solution()->associate(Post::find($request->post_id));
         $discussion->save();
         return redirect()->back();

@@ -86,7 +86,7 @@
             <button
                 type="button"
                 v-if="post.discussion.user_can.solve"
-                @click="console.log('hello')"
+                @click="toggleDiscussionSolution"
                 class="btn btn-info btn-sm text-xs text-white"
                 title="Mark This Post As Solution"
             >
@@ -100,6 +100,7 @@
 import useCreatePost from '@/Composables/useCreatePost';
 import useDeletePost from '@/Composables/useDeletePost';
 import useEditPost from '@/Composables/useEditPost';
+import useToggleDiscussionSolution from '@/Composables/useToggleDiscussionSolution';
 import { Post } from '@/types/types';
 import {
     BookmarkIcon,
@@ -118,4 +119,8 @@ const handleReply = () => {
     showForm();
     setDiscussion(props.post.discussion);
 };
+const { toggleDiscussionSolution } = useToggleDiscussionSolution(
+    props.post.discussion,
+    props.post.id,
+);
 </script>
