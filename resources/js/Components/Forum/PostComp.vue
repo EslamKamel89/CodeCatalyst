@@ -1,9 +1,9 @@
 <template>
     <div
         :id="`post-${post.id}`"
-        class="mt-4 rounded-lg border p-6 text-gray-900 shadow-sm"
+        class="relative mt-4 rounded-lg border p-6 text-gray-900 shadow-sm"
         :class="{
-            'border-4 border-green-600 bg-green-50': isSolution,
+            'my-6 border-4 border-green-600 bg-green-50': isSolution,
             'bg-white': !isSolution,
         }"
     >
@@ -92,10 +92,20 @@
                 v-if="post.discussion.user_can.solve"
                 @click="toggleDiscussionSolution(isSolution)"
                 class="btn btn-info btn-sm text-xs text-white"
-                title="Mark This Post As Solution"
+                :title="`${isSolution ? 'Unmark' : 'Mark'} This Post As Solution`"
             >
-                <BookmarkIcon class="size-5" /> <span>Solution</span>
+                <BookmarkIcon class="size-5" />
+                <span class="text-sm font-bold text-white"
+                    >{{ isSolution ? 'Unmark' : 'Mark' }}
+                    <span class="font-gray-500 text-xs">As Solution</span></span
+                >
             </button>
+        </div>
+        <div
+            class="absolute -bottom-5 right-0 rounded-lg bg-green-100 px-3 py-1 font-bold uppercase tracking-tighter text-green-900 shadow-lg"
+            v-if="isSolution"
+        >
+            Best Solution
         </div>
     </div>
 </template>
