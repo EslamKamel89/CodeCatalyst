@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DiscussionDeleteController;
 use App\Http\Controllers\DiscussionShowController;
+use App\Http\Controllers\DiscussionSolutionPatchController;
 use App\Http\Controllers\DiscussionStoreController;
 use App\Http\Controllers\ForumIndexController;
 use App\Http\Controllers\MarkDownPreviewController;
@@ -22,6 +23,7 @@ Route::post('/markdown', MarkDownPreviewController::class)->name('markdown');
 Route::middleware('auth')->group(function () {
     Route::post('/discussion', DiscussionStoreController::class)->name('discussions.store');
     Route::delete('/discussion/{discussion}', DiscussionDeleteController::class)->name('discussions.delete');
+    Route::patch('/discussion/{discussion}/solution', DiscussionSolutionPatchController::class)->name('discussions.solution.patch');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

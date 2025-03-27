@@ -83,6 +83,15 @@
             >
                 <TrashIcon class="size-5" />
             </button>
+            <button
+                type="button"
+                v-if="post.discussion.user_can.solve"
+                @click="console.log('hello')"
+                class="btn btn-info btn-sm text-xs text-white"
+                title="Mark This Post As Solution"
+            >
+                <BookmarkIcon class="size-5" /> <span>Solution</span>
+            </button>
         </div>
     </div>
 </template>
@@ -93,6 +102,7 @@ import useDeletePost from '@/Composables/useDeletePost';
 import useEditPost from '@/Composables/useEditPost';
 import { Post } from '@/types/types';
 import {
+    BookmarkIcon,
     ChatBubbleBottomCenterTextIcon,
     PencilSquareIcon,
     TrashIcon,
