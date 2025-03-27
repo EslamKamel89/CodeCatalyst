@@ -1,7 +1,11 @@
 <template>
     <div
         :id="`post-${post.id}`"
-        class="mt-4 bg-white p-6 text-gray-900 shadow-sm sm:rounded-lg"
+        class="mt-4 rounded-lg border p-6 text-gray-900 shadow-sm"
+        :class="{
+            'border-4 border-green-600 bg-green-50': isSolution,
+            'bg-white': !isSolution,
+        }"
     >
         <div class="flex items-start space-x-3 overflow-hidden">
             <div class="w-10 flex-shrink-0" v-if="post.user?.avatar_url">
@@ -86,7 +90,7 @@
             <button
                 type="button"
                 v-if="post.discussion.user_can.solve"
-                @click="toggleDiscussionSolution"
+                @click="toggleDiscussionSolution(isSolution)"
                 class="btn btn-info btn-sm text-xs text-white"
                 title="Mark This Post As Solution"
             >
@@ -111,6 +115,7 @@ import {
 } from '@heroicons/vue/16/solid';
 const props = defineProps<{
     post: Post;
+    isSolution: boolean;
 }>();
 const { editing, form, editPost } = useEditPost(props.post);
 const { showForm, setDiscussion } = useCreatePost();

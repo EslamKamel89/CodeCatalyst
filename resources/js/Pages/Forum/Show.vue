@@ -28,6 +28,7 @@
                     v-for="post in posts.data"
                     :key="post.id"
                     :post="post"
+                    :isSolution="post.id == discussion.solution?.id"
                 />
                 <PaginationComp :pagination="posts.meta" />
             </div>

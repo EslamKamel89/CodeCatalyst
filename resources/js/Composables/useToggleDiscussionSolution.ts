@@ -4,10 +4,10 @@ export default function useToggleDiscussionSolution(
     discussion: Discussion,
     postId: number | string,
 ) {
-    const toggleDiscussionSolution = () => {
+    const toggleDiscussionSolution = (isSolution: boolean) => {
         router.patch(
             route('discussions.solution.patch', { discussion: discussion.id }),
-            { post_id: postId },
+            { post_id: isSolution ? null : postId },
             { preserveScroll: true },
         );
     };
