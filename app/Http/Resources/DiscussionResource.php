@@ -26,6 +26,7 @@ class DiscussionResource extends JsonResource {
             'topic' => TopicResource::make($this->whenLoaded('topic')),
             'post' => PostResource::make($this->whenLoaded('post')),
             'latest_post' => PostResource::make($this->whenLoaded('latestPost')),
+            'solution' => PostResource::make($this->whenLoaded('solution')),
             'particpants' => PublicUserResource::collection($this->whenLoaded('particpants')),
             'user_can' => [
                 'reply' => auth()->user()?->can('reply', $this->resource),

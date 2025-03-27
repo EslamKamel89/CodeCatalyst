@@ -25,6 +25,7 @@ export interface Discussion {
     topic: Topic;
     post?: Post;
     latest_post?: Post;
+    solution?: Post;
     particpants: User[];
     user_can: {
         reply: boolean;
