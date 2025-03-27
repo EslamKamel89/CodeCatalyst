@@ -28,6 +28,7 @@ export interface Discussion {
     particpants: User[];
     user_can: {
         reply: boolean;
+        delete: boolean;
     };
 }
 

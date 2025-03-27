@@ -9,8 +9,16 @@
         </template> -->
 
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-            <div class="p-6 text-gray-900">
+            <div class="relative p-6 text-gray-900">
                 <Discussion :discussion="discussion" :showPage="true" />
+                <div class="absolute bottom-2 right-5">
+                    <button
+                        v-if="discussion.user_can.delete"
+                        class="btn btn-error btn-sm text-white"
+                    >
+                        <TrashIcon class="size-5" />
+                    </button>
+                </div>
             </div>
         </div>
         <template v-if="posts.data.length">
@@ -49,6 +57,7 @@ import {
     Pagination as PaginationType,
     Post,
 } from '@/types/types';
+import { TrashIcon } from '@heroicons/vue/16/solid';
 import { Head } from '@inertiajs/vue3';
 import { onMounted, onUpdated } from 'vue';
 const props = defineProps<{
