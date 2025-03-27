@@ -29,6 +29,7 @@ class DiscussionResource extends JsonResource {
             'particpants' => PublicUserResource::collection($this->whenLoaded('particpants')),
             'user_can' => [
                 'reply' => auth()->user()?->can('reply', $this->resource),
+                'delete' => auth()->user()?->can('delete', $this->resource),
             ]
         ];
     }
