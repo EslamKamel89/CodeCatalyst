@@ -49,6 +49,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property-read \App\Models\User|null $user
  * @property int|null $solution_post_id
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion whereSolutionPostId($value)
+ * @property-read \App\Models\Post|null $solution
  * @mixin \Eloquent
  */
 class Discussion extends Model {
@@ -111,24 +112,6 @@ class Discussion extends Model {
     public function latestPost(): HasOne {
         return $this->hasOne(Post::class)->latestOfMany();
     }
-    // public function particpants(): HasManyThrough {
-    // 	return $this->hasManyThrough(
-    // 		User::class,
-    // 		Post::class,
-    // 		'discussion_id',
-    // 		'id',
-    // 		'id',
-    // 		'id'
-    // 	)->distinct();
-    // 	return $this->hasManyThrough(
-    // 		related: User::class,
-    // 		through: Post::class,
-    // 		firstKey: 'discussion_id',
-    // 		secondKey: 'id',
-    // 		localKey: 'id',
-    // 		secondLocalKey: 'user_id'
-    // 	)->distinct();
-    // }
 
     public function particpants(): BelongsToMany {
         return $this->belongsToMany(
@@ -137,5 +120,9 @@ class Discussion extends Model {
             'discussion_id',
             'user_id',
         )->distinct();
+    }
+
+    public function solution(): BelongsTo {
+        return $this->belongsTo(Post::class, 'solution_post_id');
     }
 }

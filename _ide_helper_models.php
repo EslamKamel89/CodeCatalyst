@@ -48,7 +48,10 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $replies
  * @property-read int|null $replies_count
  * @property-read \App\Models\User|null $user
+ * @property int|null $solution_post_id
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion whereSolutionPostId($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Post|null $solution
  */
 	class Discussion extends \Eloquent {}
 }
