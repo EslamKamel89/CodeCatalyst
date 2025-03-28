@@ -29,10 +29,14 @@
 </template>
 
 <script setup lang="ts">
+import { DiscussionIndexQuery } from '@/types/types';
 import { router } from '@inertiajs/vue3';
 import { debounce } from 'lodash';
 import { ref, watch } from 'vue';
-const searchQuery = ref('');
+const props = defineProps<{
+    query: DiscussionIndexQuery;
+}>();
+const searchQuery = ref(props.query.filter?.title ?? '');
 watch(
     searchQuery,
     debounce(

@@ -11,15 +11,21 @@
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
             <div class="flex w-full items-center space-x-3 p-6 text-gray-900">
                 <TopicSelector :query />
-                <SearchDiscussionFilter class="flex-grow-1" />
+                <SearchDiscussionFilter class="flex-grow-1" :query />
             </div>
         </div>
-        <div class="space-y-2">
+        <div class="space-y-2" v-if="discussions.data.length">
             <Discussion
                 v-for="discussion in discussions.data"
                 :key="discussion.id"
                 :discussion="discussion"
             />
+        </div>
+        <div
+            class="mt-4 flex w-full items-center justify-center rounded-xl bg-white py-4 text-xs uppercase tracking-tight text-gray-500"
+            v-else
+        >
+            <div>No Discussions Found</div>
         </div>
         <PaginationComp :pagination="discussions.meta" />
         <template #side>
