@@ -30,16 +30,22 @@
 
 <script setup lang="ts">
 import { router } from '@inertiajs/vue3';
+import { debounce } from 'lodash';
 import { ref, watch } from 'vue';
 const searchQuery = ref('');
-watch(searchQuery, () => {
-    router.get(
-        route('home'),
-        { 'filter[title]': searchQuery.value },
-        {
-            preserveScroll: true,
-            preserveState: true,
-        },
-    );
-});
+watch(
+    searchQuery,
+    debounce(
+        () =>
+            router.get(
+                route('home'),
+                { 'filter[title]': searchQuery.value },
+                {
+                    preserveScroll: true,
+                    preserveState: true,
+                },
+            ),
+        1000,
+    ),
+);
 </script>

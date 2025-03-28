@@ -11,6 +11,7 @@
         "@rushstack/eslint-patch": "^1.8.0",
         "@tailwindcss/forms": "^0.5.3",
         "@tailwindcss/vite": "^4.0.0",
+        "@types/lodash": "^4.17.16",
         "@types/pluralize": "^0.0.33",
         "@vitejs/plugin-vue": "^5.0.0",
         "@vue/eslint-config-prettier": "^9.0.0",
@@ -36,6 +37,7 @@
         "@github/markdown-toolbar-element": "^2.2.3",
         "@heroicons/vue": "^2.2.0",
         "daisyui": "^5.0.0",
+        "lodash": "^4.17.21",
         "pluralize": "^8.0.0",
         "shiki": "^3.2.1",
         "vue-scrollto": "^2.20.0"
