@@ -91,4 +91,6 @@ export interface DiscussionIndexFilter {
     mine?: string;
     participating?: string;
     topic_id?: number;
+    solved?: number;
+    notsolved?: number;
 }

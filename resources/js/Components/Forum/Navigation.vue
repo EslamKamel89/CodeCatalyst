@@ -24,6 +24,26 @@
                             >No Repiies</Link
                         >
                     </li>
+                    <li>
+                        <Link
+                            :href="route('home', { 'filter[solved]': 1 })"
+                            :class="{
+                                'bg-blue-50 font-bold text-blue-700':
+                                    query?.filter?.solved,
+                            }"
+                            >Solved</Link
+                        >
+                    </li>
+                    <li>
+                        <Link
+                            :href="route('home', { 'filter[notsolved]': 1 })"
+                            :class="{
+                                'bg-blue-50 font-bold text-blue-700':
+                                    query?.filter?.notsolved,
+                            }"
+                            >Not Solved</Link
+                        >
+                    </li>
                 </ul>
                 <ul
                     class="space-y-2 border-t border-gray-400 pt-2"
