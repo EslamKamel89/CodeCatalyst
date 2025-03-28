@@ -37,6 +37,7 @@ class ForumIndexController extends Controller {
             AllowedFilter::custom('mine', new MineQueryFilter()),
             AllowedFilter::custom('participating', new ParticipatingQueryFilter()),
             'topic_id',
+            'title',
             AllowedFilter::custom('solved', new SolvedQueryFilter()),
             AllowedFilter::custom('notsolved', new UnsolvedQueryFilter())
         ];

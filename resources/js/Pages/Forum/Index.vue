@@ -9,8 +9,9 @@
         </template>
 
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-            <div class="p-6 text-gray-900">
+            <div class="flex w-full items-center space-x-3 p-6 text-gray-900">
                 <TopicSelector :query />
+                <SearchDiscussionFilter class="flex-grow-1" />
             </div>
         </div>
         <div class="space-y-2">
@@ -31,6 +32,7 @@
 <script setup lang="ts">
 import Discussion from '@/Components/Forum/Discussion.vue';
 import Navigation from '@/Components/Forum/Navigation.vue';
+import SearchDiscussionFilter from '@/Components/Forum/SearchDiscussionFilter.vue';
 import ToggleFormButton from '@/Components/Forum/ToggleFormButton.vue';
 import TopicSelector from '@/Components/Forum/TopicSelector.vue';
 import PaginationComp from '@/Components/PaginationComp.vue';
