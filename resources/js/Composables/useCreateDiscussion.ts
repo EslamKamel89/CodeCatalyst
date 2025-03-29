@@ -6,7 +6,7 @@ const markDownPreview = ref(false);
 const form = useForm({
     topic_id: null as null | number,
     title: null as null | string,
-    body: null as null | string,
+    body: '',
 });
 // const form = useForm();
 export default function useCreateDiscussion() {

@@ -51,14 +51,17 @@
                             </div>
                         </div>
                     </div>
-
-                    <textarea
+                    <AtTa
                         v-if="!markDownPreview"
-                        class="mt-4 h-20 w-full rounded-xl align-top placeholder:text-gray-400"
-                        placeholder="Enter Your Post"
-                        v-model="form.body"
-                        id="comment-textarea"
-                    ></textarea>
+                        :members="['Eslam', 'Ahmed', 'Kamel']"
+                    >
+                        <textarea
+                            class="mt-4 h-20 w-full rounded-xl align-top placeholder:text-gray-400"
+                            placeholder="Enter Your Post"
+                            v-model="form.body"
+                            id="comment-textarea"
+                        ></textarea>
+                    </AtTa>
                     <MarkDownPreview :body="form.body ?? ''" v-else />
                     <div class="text-sm text-red-500" v-if="form.errors.body">
                         {{ form.errors.body }}
@@ -84,6 +87,7 @@
 <script setup lang="ts">
 import useCreateDiscussion from '@/Composables/useCreateDiscussion';
 import { usePage } from '@inertiajs/vue3';
+import AtTa from 'vue-at/dist/vue-at-textarea';
 import Svg from '../Svg.vue';
 import FixedFormWrapper from './FixedFormWrapper.vue';
 import MarkDownPreview from './MarkDownPreview.vue';

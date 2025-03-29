@@ -40,6 +40,7 @@
         "lodash": "^4.17.21",
         "pluralize": "^8.0.0",
         "shiki": "^3.2.1",
+        "vue-at": "^3.0.0-alpha.2",
         "vue-scrollto": "^2.20.0"
     }
 }
