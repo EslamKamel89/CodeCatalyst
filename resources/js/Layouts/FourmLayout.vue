@@ -10,6 +10,7 @@
             <div class="col-span-5"><slot /></div>
         </div>
     </AuthenticatedLayout>
+
     <CreateDiscussionForm />
     <CreatePostForm />
 </template>

@@ -88,6 +88,7 @@ import Svg from '../Svg.vue';
 import FixedFormWrapper from './FixedFormWrapper.vue';
 import MarkDownPreview from './MarkDownPreview.vue';
 import MarkDownToolBar from './MarkDownToolBar.vue';
+
 const page = usePage();
 const { isVisible, hideForm, form, markDownPreview } = useCreateDiscussion();
 const submit = async () => {
