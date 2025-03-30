@@ -11,6 +11,7 @@ use App\Http\Controllers\PostPatchController;
 use App\Http\Controllers\PostStoreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsernamesIndex;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,6 +34,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/posts/{post}', PostPatchController::class)->name('posts.edit');
     Route::delete('/posts/{post}', PostDeleteController::class)->name('posts.delete');
 });
+// Route::get('/test', function (Request $request) {
+//     $text = '@eslam @ahmed @kamel hello world eslam@gmail.com';
+//     preg_match_all('/@(?!\S+@\S+\.\S+)[a-zA-Z0-9._]+/', $text, $matches);
+//     $matches =  collect($matches[0])->map(fn(string $match) => str($match)->remove('@'));
+//     $users = User::whereIn('username', $matches,)->get();
+//     dd($matches, $users);
+// });
 
 require __DIR__ . '/auth.php';
 
