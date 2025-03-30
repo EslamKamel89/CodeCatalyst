@@ -10,6 +10,7 @@ use App\Http\Controllers\PostDeleteController;
 use App\Http\Controllers\PostPatchController;
 use App\Http\Controllers\PostStoreController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsernamesIndex;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -21,6 +22,7 @@ Route::get('/discussion/{discussion:slug}', DiscussionShowController::class)->na
 Route::post('/markdown', MarkDownPreviewController::class)->name('markdown');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/usernames', UsernamesIndex::class)->name('usernames.index');
     Route::post('/discussion', DiscussionStoreController::class)->name('discussions.store');
     Route::delete('/discussion/{discussion}', DiscussionDeleteController::class)->name('discussions.delete');
     Route::patch('/discussion/{discussion}/solution', DiscussionSolutionPatchController::class)->name('discussions.solution.patch');

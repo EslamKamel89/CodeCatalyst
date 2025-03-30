@@ -13,3 +13,6 @@ code {
 .shiki {
     @apply my-4 rounded-lg p-6 text-sm;
 }
+.atwho-cur {
+    @apply !bg-success;
+}

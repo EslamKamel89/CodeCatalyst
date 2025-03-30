@@ -51,10 +51,12 @@
                             </div>
                         </div>
                     </div>
-                    <AtTa
-                        v-if="!markDownPreview"
-                        :members="['Eslam', 'Ahmed', 'Kamel']"
-                    >
+                    <AtTa v-if="!markDownPreview" :members="usernames">
+                        <template #item="itemProps">
+                            <div class="my-1 cursor-pointer px-2 text-sm">
+                                {{ itemProps.item }}
+                            </div>
+                        </template>
                         <textarea
                             class="mt-4 h-20 w-full rounded-xl align-top placeholder:text-gray-400"
                             placeholder="Enter Your Post"
@@ -85,8 +87,10 @@
 </template>
 
 <script setup lang="ts">
+import { useAxios } from '@/Composables/useAxios';
 import useCreateDiscussion from '@/Composables/useCreateDiscussion';
 import { usePage } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
 import AtTa from 'vue-at/dist/vue-at-textarea';
 import Svg from '../Svg.vue';
 import FixedFormWrapper from './FixedFormWrapper.vue';
@@ -103,4 +107,10 @@ const submit = async () => {
         },
     });
 };
+const { data: usernames, execute } = useAxios<string[]>({
+    url: route('usernames.index'),
+});
+onMounted(() => {
+    execute();
+});
 </script>
