@@ -42,60 +42,71 @@ use Illuminate\Notifications\Notifiable;
  * @property-read int|null $topics_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
  * @property-read int|null $posts_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $postsMentionedIn
+ * @property-read int|null $posts_mentioned_in_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable {
-	/** @use HasFactory<\Database\Factories\UserFactory> */
-	use HasFactory, Notifiable;
+    /** @use HasFactory<\Database\Factories\UserFactory> */
+    use HasFactory, Notifiable;
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var list<string>
-	 */
-	protected $fillable = [ 
-		'name',
-		'email',
-		'password',
-		'username',
-	];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'username',
+    ];
 
-	/**
-	 * The attributes that should be hidden for serialization.
-	 *
-	 * @var list<string>
-	 */
-	protected $hidden = [ 
-		'password',
-		'remember_token',
-	];
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-	/**
-	 * Get the attributes that should be cast.
-	 *
-	 * @return array<string, string>
-	 */
-	protected function casts(): array {
-		return [ 
-			'email_verified_at' => 'datetime',
-			'password' => 'hashed',
-		];
-	}
-	public function discussions(): HasMany {
-		return $this->hasMany( Discussion::class);
-	}
-	public function topics(): BelongsToMany {
-		return $this->belongsToMany(
-			Topic::class,
-			'discussions',
-			'user_id',
-			'topic_id',
-		);
-	}
-	public function posts(): HasMany {
-		return $this->hasMany( Post::class);
-	}
-	public function avatarUrl(): string {
-		return "https://ui-avatars.com/api/?background=random&name={$this->username}";
-	}
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+    public function discussions(): HasMany {
+        return $this->hasMany(Discussion::class);
+    }
+    public function topics(): BelongsToMany {
+        return $this->belongsToMany(
+            Topic::class,
+            'discussions',
+            'user_id',
+            'topic_id',
+        );
+    }
+    public function posts(): HasMany {
+        return $this->hasMany(Post::class);
+    }
+    public function avatarUrl(): string {
+        return "https://ui-avatars.com/api/?background=random&name={$this->username}";
+    }
+    public function postsMentionedIn(): BelongsToMany {
+        return $this->belongsToMany(
+            Post::class,
+            'mentions',
+            'user_id',
+            'post_id',
+        )->as('mentions')
+            ->withTimestamps();
+    }
 }

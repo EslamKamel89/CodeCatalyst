@@ -84,6 +84,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $usersMentioned
+ * @property-read int|null $users_mentioned_count
  */
 	class Post extends \Eloquent {}
 }
@@ -150,6 +152,8 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
  * @property-read int|null $posts_count
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $postsMentionedIn
+ * @property-read int|null $posts_mentioned_in_count
  */
 	class User extends \Eloquent {}
 }

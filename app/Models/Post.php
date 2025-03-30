@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -33,27 +34,38 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUserId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $usersMentioned
+ * @property-read int|null $users_mentioned_count
  * @mixin \Eloquent
  */
 class Post extends Model {
-	/** @use HasFactory<\Database\Factories\PostFactory> */
-	use HasFactory;
-	protected $fillable = [ 
-		'user_id',
-		'discussion_id',
-		'parent_id',
-		'body',
-	];
-	public function user(): BelongsTo {
-		return $this->belongsTo( User::class);
-	}
-	public function discussion(): BelongsTo {
-		return $this->belongsTo( Discussion::class);
-	}
-	public function parent(): BelongsTo {
-		return $this->belongsTo( Post::class, 'parent_id' );
-	}
-	public function children(): HasMany {
-		return $this->hasMany( Post::class, 'parent_id' );
-	}
+    /** @use HasFactory<\Database\Factories\PostFactory> */
+    use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'discussion_id',
+        'parent_id',
+        'body',
+    ];
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class);
+    }
+    public function discussion(): BelongsTo {
+        return $this->belongsTo(Discussion::class);
+    }
+    public function parent(): BelongsTo {
+        return $this->belongsTo(Post::class, 'parent_id');
+    }
+    public function children(): HasMany {
+        return $this->hasMany(Post::class, 'parent_id');
+    }
+    public function usersMentioned(): BelongsToMany {
+        return $this->belongsToMany(
+            User::class,
+            'mentions',
+            'post_id',
+            'user_id',
+        )->as('mentions')
+            ->withTimestamps();
+    }
 }
