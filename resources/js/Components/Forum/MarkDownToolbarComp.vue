@@ -19,6 +19,9 @@
             <md-link class="toolbar-button" title="link"
                 ><Svg class="h-7 w-7 object-fill" name="link"
             /></md-link>
+            <md-mention class="toolbar-button" title="mention"
+                ><Svg class="h-7 w-7 object-fill" name="mention"
+            /></md-mention>
         </div>
     </markdown-toolbar>
 </template>
