@@ -16,10 +16,11 @@ import { usePage } from '@inertiajs/vue3';
 const props = defineProps<{
     discussion: Discussion;
 }>();
-const { toggleForm, isVisible, setDiscussion } = useCreatePost();
+const { toggleForm, isVisible, setDiscussion, form } = useCreatePost();
 const page = usePage();
 const handleToggle = () => {
     toggleForm();
     setDiscussion(props.discussion);
+    form.body = '';
 };
 </script>
