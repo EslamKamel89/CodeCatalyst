@@ -19,7 +19,7 @@ class DiscussionSolutionPatchRequest extends FormRequest {
      */
     public function rules(): array {
         return [
-            //
+            'post_id' => ['nullable', 'exists:posts,id']
         ];
     }
 }
