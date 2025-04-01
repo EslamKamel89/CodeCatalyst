@@ -21,9 +21,9 @@ use Inertia\Inertia;
 Route::get('/', ForumIndexController::class)->name('home');
 Route::get('/discussion/{discussion:slug}', DiscussionShowController::class)->name('discussions.show');
 Route::post('/markdown', MarkDownPreviewController::class)->name('markdown');
+Route::get('/usernames', UsernamesIndex::class)->name('usernames.index');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/usernames', UsernamesIndex::class)->name('usernames.index');
     Route::post('/discussion', DiscussionStoreController::class)->name('discussions.store');
     Route::delete('/discussion/{discussion}', DiscussionDeleteController::class)->name('discussions.delete');
     Route::patch('/discussion/{discussion}/solution', DiscussionSolutionPatchController::class)->name('discussions.solution.patch');

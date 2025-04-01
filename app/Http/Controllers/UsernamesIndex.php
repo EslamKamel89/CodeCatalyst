@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\pr;
 use Illuminate\Http\Request;
 use App\Models\User;
 

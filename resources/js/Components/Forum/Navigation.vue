@@ -72,6 +72,16 @@
                             >Participating</Link
                         >
                     </li>
+                    <li>
+                        <Link
+                            :href="route('home', { 'filter[mentioned]': 1 })"
+                            :class="{
+                                'bg-blue-50 font-bold text-blue-700':
+                                    query?.filter?.mentioned,
+                            }"
+                            >Mentioned</Link
+                        >
+                    </li>
                 </ul>
             </nav>
         </div>
