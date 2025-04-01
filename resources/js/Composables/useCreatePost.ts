@@ -10,6 +10,7 @@ const form = useForm({
 });
 // const form = useForm();
 export default function useCreatePost() {
+    // if (replyTo) form.body = `@${replyTo}`;
     const showForm = () => (isVisible.value = true);
     const hideForm = () => (isVisible.value = false);
     const toggleForm = () => {

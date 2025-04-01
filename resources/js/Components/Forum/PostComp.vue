@@ -139,11 +139,13 @@ const props = defineProps<{
     isSolution: boolean;
 }>();
 const { editing, form, editPost } = useEditPost(props.post);
-const { showForm, setDiscussion } = useCreatePost();
+const { showForm, setDiscussion, form: createPostForm } = useCreatePost();
 const { deletePost } = useDeletePost(props.post);
+
 const handleReply = () => {
     showForm();
     setDiscussion(props.post.discussion);
+    createPostForm.body = `@${props.post.user?.username}`;
 };
 const { toggleDiscussionSolution } = useToggleDiscussionSolution(
     props.post.discussion,
