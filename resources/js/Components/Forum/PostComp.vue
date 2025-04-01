@@ -25,10 +25,17 @@
                     </div>
                 </div>
                 <div v-if="editing">
-                    <textarea
-                        v-model="form.body"
-                        class="markdown mt-3 w-full rounded-lg"
-                    ></textarea>
+                    <AtTa :members="usernames">
+                        <template #item="itemProps">
+                            <div class="my-1 cursor-pointer px-2 text-sm">
+                                {{ itemProps.item }}
+                            </div>
+                        </template>
+                        <textarea
+                            v-model="form.body"
+                            class="markdown mt-3 w-full rounded-lg"
+                        ></textarea>
+                    </AtTa>
                     <div
                         class="px-3 text-xs text-red-500"
                         v-if="form.errors.body"
@@ -111,6 +118,7 @@
 </template>
 
 <script setup lang="ts">
+import { useAxios } from '@/Composables/useAxios';
 import useCreatePost from '@/Composables/useCreatePost';
 import useDeletePost from '@/Composables/useDeletePost';
 import useEditPost from '@/Composables/useEditPost';
@@ -123,6 +131,9 @@ import {
     TrashIcon,
     XMarkIcon,
 } from '@heroicons/vue/16/solid';
+import { onMounted } from 'vue';
+import AtTa from 'vue-at/dist/vue-at-textarea';
+
 const props = defineProps<{
     post: Post;
     isSolution: boolean;
@@ -138,4 +149,10 @@ const { toggleDiscussionSolution } = useToggleDiscussionSolution(
     props.post.discussion,
     props.post.id,
 );
+const { data: usernames, execute } = useAxios<string[]>({
+    url: route('usernames.index'),
+});
+onMounted(() => {
+    execute();
+});
 </script>
