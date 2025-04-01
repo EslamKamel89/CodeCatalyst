@@ -19,13 +19,19 @@
         <template #main>
             <form @submit.prevent="submit">
                 <div>
-                    <textarea
-                        v-if="!markDownPreview"
-                        class="mt-4 h-20 w-full rounded-xl align-top placeholder:text-gray-400"
-                        placeholder="Enter Your Post"
-                        v-model="form.body"
-                        id="comment-textarea"
-                    ></textarea>
+                    <AtTa v-if="!markDownPreview" :members="usernames">
+                        <template #item="itemProps">
+                            <div class="my-1 cursor-pointer px-2 text-sm">
+                                {{ itemProps.item }}
+                            </div>
+                        </template>
+                        <textarea
+                            class="mt-4 h-20 w-full rounded-xl align-top placeholder:text-gray-400"
+                            placeholder="Enter Your Post"
+                            v-model="form.body"
+                            id="comment-textarea"
+                        ></textarea>
+                    </AtTa>
                     <MarkDownPreview :body="form.body ?? ''" v-else />
                     <div class="text-sm text-red-500" v-if="form.errors.body">
                         {{ form.errors.body }}
@@ -49,8 +55,11 @@
 </template>
 
 <script setup lang="ts">
+import { useAxios } from '@/Composables/useAxios';
 import useCreatePost from '@/Composables/useCreatePost';
 import { usePage } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
+import AtTa from 'vue-at/dist/vue-at-textarea';
 import Svg from '../Svg.vue';
 import FixedFormWrapper from './FixedFormWrapper.vue';
 import MarkDownPreview from './MarkDownPreview.vue';
@@ -66,4 +75,10 @@ const submit = async () => {
         },
     });
 };
+const { data: usernames, execute } = useAxios<string[]>({
+    url: route('usernames.index'),
+});
+onMounted(() => {
+    execute();
+});
 </script>
